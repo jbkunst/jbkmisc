@@ -35,6 +35,7 @@ load_fonts <- function() {
 #' @param plot_title_face plot_title_face
 #' @param striptext_family striptext_family
 #' @param striptext_face striptext_face
+#' @param strip_inverse strip_inverse
 #' @param base_size base_size
 #' @import ggplot2
 #' @export
@@ -45,7 +46,7 @@ theme_jbk <- function(
   striptext_family   = plot_title_family,
   striptext_face     = plot_title_face,
   strip_inverse = FALSE,
-  base_size = 30
+  base_size = 11
 ) {
 
   # init

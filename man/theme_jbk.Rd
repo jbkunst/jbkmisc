@@ -6,7 +6,7 @@
 \usage{
 theme_jbk(base_family = "Lato", plot_title_family = "Open Sans Condensed",
   plot_title_face = "bold", striptext_family = plot_title_family,
-  striptext_face = plot_title_face, strip_inverse = FALSE, base_size = 30)
+  striptext_face = plot_title_face, strip_inverse = FALSE, base_size = 11)
 }
 \arguments{
 \item{base_family}{base_family}
