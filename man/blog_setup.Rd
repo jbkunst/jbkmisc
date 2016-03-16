@@ -4,7 +4,23 @@
 \alias{blog_setup}
 \title{Blog setup}
 \usage{
-blog_setup()
+blog_setup(message = FALSE, warning = FALSE, fig.showtext = TRUE,
+  dev = "CairoPNG", fig.width = 11, fig.height = 7, dpi = 72)
+}
+\arguments{
+\item{message}{= FALSE,}
+
+\item{warning}{= FALSE,}
+
+\item{fig.showtext}{= TRUE,}
+
+\item{dev}{= "CairoPNG",}
+
+\item{fig.width}{= 16,}
+
+\item{fig.height}{= 9,}
+
+\item{dpi}{= 72}
 }
 \description{
 Blog setup

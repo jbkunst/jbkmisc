@@ -2,7 +2,6 @@
 
 export(blog_setup)
 export(load_fonts)
-export(set_knitr_opts)
 export(theme_jbk)
 import(ggplot2)
 importFrom(knitr,opts_chunk)

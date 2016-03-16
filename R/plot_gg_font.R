@@ -1,22 +1,43 @@
 #' Blog setup
+#' @importFrom knitr opts_chunk
+#' @param message = FALSE,
+#' @param warning = FALSE,
+#' @param fig.showtext = TRUE,
+#' @param dev = "CairoPNG",
+#' @param fig.width = 16,
+#' @param fig.height = 9,
+#' @param dpi = 72
 #' @export
-blog_setup <- function() {
-  set_knitr_opts()
+blog_setup <- function(
+  message = FALSE,
+  warning = FALSE,
+  fig.showtext = TRUE,
+  dev = "CairoPNG",
+  fig.width = 11,
+  fig.height = 7,
+  dpi = 72) {
+
   load_fonts()
+
+  opts_chunk$set(
+    message = message,
+    warning = warning,
+    fig.showtext = fig.showtext,
+    dev = dev,
+    fig.width = fig.width,
+    fig.height = fig.height,
+    dpi = dpi
+    )
+
   theme_set(theme_jbk())
+  # if (is.null(knitr::opts_knit$get("rmarkdown.pandoc.to"))) {
+  #
+  # } else {
+  #   theme_set(theme_jbk(base_size = base_size_html))
+  # }
+
   invisible()
 }
-
-#' Set knitr opts
-#' @importFrom knitr opts_chunk
-#' @export
-set_knitr_opts <- function() {
-  opts_chunk$set(message = FALSE,
-                 warning = FALSE,
-                 fig.showtext = TRUE,
-                 dev = "CairoPNG")
-}
-
 
 #' Load fonts
 #' @importFrom sysfonts font.add.google
@@ -43,18 +64,13 @@ load_fonts <- function() {
 #' @import ggplot2
 #' @export
 theme_jbk <- function(
-  base_family = "Roboto",
+  base_family        = "Roboto",
   plot_title_family  = "Roboto Condensed",
   plot_title_face    = "bold",
   striptext_family   = plot_title_family,
-
-
-
-
-
   striptext_face     = plot_title_face,
-  strip_inverse = FALSE,
-  base_size = 11
+  strip_inverse      = FALSE,
+  base_size          = 11
 ) {
 
   # init

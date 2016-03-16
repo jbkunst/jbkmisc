@@ -2,25 +2,60 @@
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 library("dplyr")
 library("jbkmisc")
 library("ggplot2")
 library("ggthemes")
+library("highcharter")
 
 data("diamonds")
 diamonds <- sample_n(diamonds, 1000)
-
 blog_setup()
 ```
 
-```{r fig.width=10, fig.height=8}
-gg <- ggplot(diamonds) + 
+```{r}
+tt <- "Main Title"
+st <- "Grumpy wizards make toxic brew for the evil Queen and Jack"
+xl <- "X lab"
+yl <- "Y lab"
+cp <- "jkunst.com"
+
+ggplot(diamonds) + 
+  geom_point(aes(carat, price), color = "#d35400") +
+  scale_color_gdocs() +
+   labs(title = tt,
+       subtitle = st,
+       caption = cp,
+       x = xl,
+       y = yl)
+
+dsdiamonds <-  diamonds %>% 
+  select(carat, price, cut) %>% 
+  mutate(x = carat,
+         y = price) %>% 
+  list.parse3()
+
+highchart() %>% 
+  hc_title(text = tt) %>%
+  hc_subtitle(text = st) %>% 
+  hc_add_series(data = dsdiamonds, type = "scatter",
+                showInLegend = FALSE) %>%
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_xAxis(title = list(text = xl)) %>% 
+  hc_yAxis(title = list(text = yl)) %>% 
+  hc_add_theme(hc_theme_smpl())
+
+
+
+```
+
+# Facet
+```{r}
+ggplot(diamonds) + 
   geom_point(aes(carat, price, color = cut)) + 
   facet_wrap(~clarity) +
-  ggtitle("A Title")
-
-gg +
+  ggtitle("A Title") +
   scale_color_economist()
 ```
 
