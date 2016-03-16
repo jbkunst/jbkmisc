@@ -4,7 +4,7 @@
 \alias{theme_jbk}
 \title{My ggplot2 go-to theme inspired by \code{hrbrmisc}}
 \usage{
-theme_jbk(base_family = "Lato", plot_title_family = "Open Sans Condensed",
+theme_jbk(base_family = "Roboto", plot_title_family = "Roboto Condensed",
   plot_title_face = "bold", striptext_family = plot_title_family,
   striptext_face = plot_title_face, strip_inverse = FALSE, base_size = 11)
 }
@@ -18,6 +18,8 @@ theme_jbk(base_family = "Lato", plot_title_family = "Open Sans Condensed",
 \item{striptext_family}{striptext_family}
 
 \item{striptext_face}{striptext_face}
+
+\item{strip_inverse}{strip_inverse}
 
 \item{base_size}{base_size}
 }

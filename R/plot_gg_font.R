@@ -24,7 +24,10 @@ set_knitr_opts <- function() {
 #' @export
 load_fonts <- function() {
   font.add.google("Open Sans Condensed",  regular.wt = 300, bold.wt = 700)
+  font.add.google("PT Sans Narrow")
   font.add.google("Lato")
+  font.add.google("Roboto")
+  font.add.google("Roboto Condensed")
   showtext.auto()
   invisible()
 }
@@ -40,10 +43,15 @@ load_fonts <- function() {
 #' @import ggplot2
 #' @export
 theme_jbk <- function(
-  base_family = "Lato",
-  plot_title_family  = "Open Sans Condensed",
+  base_family = "Roboto",
+  plot_title_family  = "Roboto Condensed",
   plot_title_face    = "bold",
   striptext_family   = plot_title_family,
+
+
+
+
+
   striptext_face     = plot_title_face,
   strip_inverse = FALSE,
   base_size = 11
@@ -66,7 +74,7 @@ theme_jbk <- function(
   thm <- thm +
     theme(
       plot.title = element_text(family = plot_title_family, face = plot_title_face, hjust = 0),
-      strip.text = element_text(family = striptext_family, face = striptext_face, hjust = 0)
+      strip.text = element_text(family = striptext_family, face = striptext_face, hjust = 0, size = base_size)
     )
 
   if (strip_inverse) {
