@@ -12,4 +12,8 @@ Imports:
   ggplot2,
   showtext,
   sysfonts,
-  knitr
+  knitr,
+  xml2,
+  rvest,
+  magrittr,
+  htmlwidgets
