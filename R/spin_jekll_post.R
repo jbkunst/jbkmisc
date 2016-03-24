@@ -42,9 +42,13 @@ spin_jekyll_post <- function(r_script){
     file.copy("wdgettemp.html", wdgtfname, overwrite = TRUE)
     file.remove("wdgettemp.html")
 
-    iframetxt <- sprintf("<iframe src=\"/%s\" height=\"500\" ></iframe>", wdgtfname)
+    iframetxt <- sprintf("<iframe src=\"/%s\"></iframe>", wdgtfname)
 
-    asis_output(iframetxt)
+    linktxt <- sprintf("<a href=\"/%s\" target=\"_blank\">open</a>", wdgtfname)
+
+    out <- paste(iframetxt, linktxt, collapse = "\n")
+
+    asis_output(out)
   }
 
 
