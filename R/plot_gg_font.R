@@ -93,6 +93,12 @@ theme_jbk <- function(
       strip.text = element_text(family = striptext_family, face = striptext_face, hjust = 0, size = base_size)
     )
 
+  # legend
+  hm <- thm +
+    theme(
+      legend.position = "bottom"
+    )
+
   if (strip_inverse) {
     thm <- thm +
       theme(
