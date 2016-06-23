@@ -7,6 +7,8 @@
 #' @export
 spin_jekyll_post <- function(r_script){
 
+  library(knitr)
+
   #### pars ####
   t0 <- Sys.time()
   folder_name <<- gsub("^\\d{4}-\\d{2}-\\d{2}-|\\.R$", "", basename(r_script))
@@ -26,32 +28,6 @@ spin_jekyll_post <- function(r_script){
     fs <- dir(sprintf("htmlwidgets/%s", folder_name), full.names = TRUE)
     lapply(fs, file.remove)
   }
-
-  knit_print.htmlwidget <<- function(x, ..., options = NULL){
-
-    options(pandoc.stack.size = "2048m")
-
-    wdgtclass <- setdiff(class(x), "htmlwidget")[1]
-    wdgtrndnm <- paste0(sample(letters, size = 7), collapse = "")
-    wdgtfname <- sprintf("htmlwidgets/%s/%s_%s.html", folder_name, wdgtclass, wdgtrndnm)
-
-    suppressWarnings(try(dir.create(sprintf(sprintf("htmlwidgets/%s", folder_name)))))
-
-    try(saveWidget(x, file = "wdgettemp.html", selfcontained = TRUE))
-
-    file.copy("wdgettemp.html", wdgtfname, overwrite = TRUE)
-    file.remove("wdgettemp.html")
-
-    iframetxt <- sprintf("<iframe src=\"/%s\"></iframe>", wdgtfname)
-
-    linktxt <- sprintf("<a href=\"/%s\" target=\"_blank\">open</a>", wdgtfname)
-
-    out <- paste(iframetxt, linktxt, collapse = "\n")
-
-    asis_output(out)
-  }
-
-
 
   #### knitting ####
   message(sprintf("knitting %s", basename(r_script)))
@@ -87,5 +63,37 @@ spin_jekyll_post <- function(r_script){
   diff <- Sys.time() - t0
   message(sprintf("time to spin: %s %s", round(diff, 2), attr(diff, "units")))
   invisible()
+
+}
+
+#' @importFrom knitr knit_print
+#' @export
+knit_print.htmlwidget <- function(x, ..., options = NULL){
+
+  if (is.null(getOption("spintoblog"))) {
+    return(htmlwidgets:::knit_print.htmlwidget(x, ..., options = options))
+  } else {
+    options(pandoc.stack.size = "2048m")
+
+    wdgtclass <- setdiff(class(x), "htmlwidget")[1]
+    wdgtrndnm <- paste0(sample(letters, size = 7), collapse = "")
+    wdgtfname <- sprintf("htmlwidgets/%s/%s_%s.html", folder_name, wdgtclass, wdgtrndnm)
+
+    suppressWarnings(try(dir.create(sprintf(sprintf("htmlwidgets/%s", folder_name)))))
+
+    try(saveWidget(x, file = "wdgettemp.html", selfcontained = TRUE))
+
+    file.copy("wdgettemp.html", wdgtfname, overwrite = TRUE)
+    file.remove("wdgettemp.html")
+
+    iframetxt <- sprintf("<iframe src=\"/%s\"></iframe>", wdgtfname)
+
+    linktxt <- sprintf("<a href=\"/%s\" target=\"_blank\">open</a>", wdgtfname)
+
+    out <- paste(iframetxt, linktxt, collapse = "\n")
+
+    return(asis_output(out))
+  }
+
 
 }

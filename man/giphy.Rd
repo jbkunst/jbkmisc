@@ -4,13 +4,12 @@
 \alias{giphy}
 \title{Creating a md image and link source from a giphy url}
 \usage{
-giphy(url = "http://giphy.com/gifs/art-tech-algorithm-J7NAxMWW5Q6cg",
-  txt_ttl = "giphy gif", txt_src = "source")
+giphy(id = "RgfGmnVvt8Pfy", txt_ttl = "giphy gif", addsource = TRUE)
 }
 \arguments{
-\item{url}{url}
-
 \item{txt_ttl}{title}
+
+\item{url}{url}
 
 \item{txt_src}{txt_src}
 }
