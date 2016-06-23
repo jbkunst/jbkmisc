@@ -15,10 +15,39 @@ spin_jekyll_post <- function(r_script){
   options(digits = 3, knitr.table.format = "markdown",
           encoding = "UTF-8", stringsAsFactors = FALSE)
 
-  opts_chunk$set(fig.path = image_folder, fig.align = "center",
-                 warning = FALSE, message = FALSE)
+  opts_chunk$set(fig.path = image_folder,
+                 fig.align = "center",
+                 screenshot.force = FALSE,
+                 warning = FALSE,
+                 message = FALSE)
 
   opts_knit$set(root.dir  = normalizePath("."))
+
+  knit_print.htmlwidget <<- function(x, ..., options = NULL){
+
+    options(pandoc.stack.size = "2048m")
+
+    wdgtclass <- setdiff(class(x), "htmlwidget")[1]
+    wdgtrndnm <- paste0(sample(letters, size = 7), collapse = "")
+    wdgtfname <- sprintf("htmlwidgets/%s/%s_%s.html", folder_name, wdgtclass, wdgtrndnm)
+
+    suppressWarnings(try(dir.create(sprintf(sprintf("htmlwidgets/%s", folder_name)))))
+
+    try(htmlwidgets::saveWidget(x, file = "wdgettemp.html", selfcontained = TRUE))
+
+    file.copy("wdgettemp.html", wdgtfname, overwrite = TRUE)
+    file.remove("wdgettemp.html")
+
+    iframetxt <- sprintf("<iframe src=\"/%s\"></iframe>", wdgtfname)
+
+    linktxt <- sprintf("<a href=\"/%s\" target=\"_blank\">open</a>", wdgtfname)
+
+    out <- paste(iframetxt, linktxt, collapse = "\n")
+
+    return(asis_output(out))
+
+  }
+
 
   #### removing widgets if exists ####
   if ( length(dir(sprintf("htmlwidgets/%s", folder_name), full.names = TRUE)) > 0) {
