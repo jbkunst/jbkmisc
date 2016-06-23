@@ -7,11 +7,11 @@
 giphy(id = "RgfGmnVvt8Pfy", txt_ttl = "giphy gif", addsource = TRUE)
 }
 \arguments{
+\item{id}{id}
+
 \item{txt_ttl}{title}
 
-\item{url}{url}
-
-\item{txt_src}{txt_src}
+\item{addsource}{addsource}
 }
 \description{
 Creating a md image and link source from a giphy url

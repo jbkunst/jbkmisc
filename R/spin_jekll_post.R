@@ -3,15 +3,12 @@
 #' @param r_script r_script
 #'
 #' @importFrom knitr opts_chunk opts_knit asis_output knit2html spin
-#' @importFrom htmlwidgets saveWidget
 #' @export
 spin_jekyll_post <- function(r_script){
 
-  library(knitr)
-
   #### pars ####
   t0 <- Sys.time()
-  folder_name <<- gsub("^\\d{4}-\\d{2}-\\d{2}-|\\.R$", "", basename(r_script))
+  folder_name <- gsub("^\\d{4}-\\d{2}-\\d{2}-|\\.R$", "", basename(r_script))
   image_folder <- sprintf("images/%s/", folder_name)
 
   #### options ####
@@ -33,7 +30,7 @@ spin_jekyll_post <- function(r_script){
   message(sprintf("knitting %s", basename(r_script)))
 
   #spin(r_script, envir = new.env())
-  knit2html(spin(r_script, knit = FALSE), force_v1 = TRUE,  envir = new.env())
+  knit2html(spin(r_script, knit = FALSE), force_v1 = TRUE, envir = new.env())
 
   r_md <- sub(".R$", ".md", basename(r_script))
   r_rmd <- sub(".R$", ".Rmd", basename(r_script))
@@ -63,37 +60,5 @@ spin_jekyll_post <- function(r_script){
   diff <- Sys.time() - t0
   message(sprintf("time to spin: %s %s", round(diff, 2), attr(diff, "units")))
   invisible()
-
-}
-
-#' @importFrom knitr knit_print
-#' @export
-knit_print.htmlwidget <- function(x, ..., options = NULL){
-
-  if (is.null(getOption("spintoblog"))) {
-    return(htmlwidgets:::knit_print.htmlwidget(x, ..., options = options))
-  } else {
-    options(pandoc.stack.size = "2048m")
-
-    wdgtclass <- setdiff(class(x), "htmlwidget")[1]
-    wdgtrndnm <- paste0(sample(letters, size = 7), collapse = "")
-    wdgtfname <- sprintf("htmlwidgets/%s/%s_%s.html", folder_name, wdgtclass, wdgtrndnm)
-
-    suppressWarnings(try(dir.create(sprintf(sprintf("htmlwidgets/%s", folder_name)))))
-
-    try(saveWidget(x, file = "wdgettemp.html", selfcontained = TRUE))
-
-    file.copy("wdgettemp.html", wdgtfname, overwrite = TRUE)
-    file.remove("wdgettemp.html")
-
-    iframetxt <- sprintf("<iframe src=\"/%s\"></iframe>", wdgtfname)
-
-    linktxt <- sprintf("<a href=\"/%s\" target=\"_blank\">open</a>", wdgtfname)
-
-    out <- paste(iframetxt, linktxt, collapse = "\n")
-
-    return(asis_output(out))
-  }
-
 
 }
