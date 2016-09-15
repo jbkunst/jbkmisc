@@ -5,7 +5,7 @@
 load_fonts <- function() {
   # system
   # extrafont::font_import()
-  extrafont::font_import(pattern = "calibri|arial", prompt = FALSE)
+  extrafont::font_import(pattern = "calibri\\.|arial\\.", prompt = FALSE)
   # extrafont::fonts()
 
   # google
