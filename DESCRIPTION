@@ -16,4 +16,8 @@ Imports:
   xml2,
   rvest,
   magrittr,
-  htmlwidgets
+  htmlwidgets,
+  RODBC,
+  dplyr,
+  purrr,
+  lubridate

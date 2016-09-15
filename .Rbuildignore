@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-no-build/
+dev/
 ^\.travis\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
