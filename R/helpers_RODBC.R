@@ -31,10 +31,17 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
     paste0("^", c("count", "sum", "max"), "\\(", collapse = "|")
   )
 
+  names <- fields %>%
+    gsub("\\(", "_of_", .) %>%
+    gsub("\\)", "", .) %>%
+    paste(fields, "as", .)
+
+  names <- ifelse(is_op, names, fields)
+
   q <- whisker.render(
     "select {{ fields }} from {{ table }}",
     data = list(
-      fields = paste(fields, collapse = ", "),
+      fields = paste(names, collapse = ", "),
       table = table
     )
   )
@@ -48,7 +55,7 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
     )
   }
 
-  message("exec: ", q)
+  message("exec:\n", q)
 
   sqlquery(chn, q)
 
