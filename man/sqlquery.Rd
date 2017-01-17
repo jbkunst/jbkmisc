@@ -2,7 +2,8 @@
 % Please edit documentation in R/databases.R
 \name{sqlQuery}
 \alias{sqlQuery}
-\title{My ggplot2 go-to theme inspired by \code{hrbrmisc}}
+\title{My ggplot2 go-to theme inspired by \code{hrbrmisc}
+Just return a tibble instead of a data.frame object.}
 \usage{
 sqlQuery(...)
 }
@@ -10,6 +11,7 @@ sqlQuery(...)
 \item{...}{Same arguments as \code{RODBC::sqlQuery}}
 }
 \description{
+My ggplot2 go-to theme inspired by \code{hrbrmisc}
 Just return a tibble instead of a data.frame object.
 }
 

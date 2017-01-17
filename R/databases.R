@@ -1,15 +1,16 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrmisc}
-#'
 #' Just return a tibble instead of a data.frame object.
-#'
 #' @param ... Same arguments as \code{RODBC::sqlQuery}
+#' @importFrom dplyr tbl_df
 #' @export
 sqlQuery <- function(...) {
+
   res <- RODBC::sqlQuery(...)
+
   if(is.data.frame(res)){
-    res <- dplyr::tbl_df(res) %>%
-      purrr::dmap_if(is.factor, as.character)
+    res <- tbl_df(res)
   }
+
   res
 }
 
@@ -55,7 +56,7 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
     )
   }
 
-  message("exec:\n", q)
+  if(getOption("jbkmisc.verbose")) message("exec:\n", q)
 
   sqlQuery(chn, q)
 

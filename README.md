@@ -13,8 +13,7 @@
 * `ym_diff`
 
 ## databases
-* `sqlQuery`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class 
-and do `dmap_if(is.factor, as.character)`.
+* `sqlQuery`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
 * `sqlquery2`: Do a sqlQuery given a channel, a table name and fields. If 
 there are a sum, count etc, aumatically do the group by with the other 
 fields
