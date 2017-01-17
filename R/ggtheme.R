@@ -1,5 +1,4 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrmisc}
-#'
 #' @param base_family base_family
 #' @param plot_title_family plot_title_family
 #' @param plot_title_face plot_title_face
@@ -7,7 +6,6 @@
 #' @param striptext_face striptext_face
 #' @param strip_inverse strip_inverse
 #' @param base_size base_size
-#'
 #' @import ggplot2
 #' @export
 theme_jbk <- function(

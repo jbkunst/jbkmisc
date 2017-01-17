@@ -2,7 +2,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
 
-## Wroflow
+## Workflow
 * `wf_create_folders`: crate data, code and output folder.
 
 ## ggtheme

@@ -1,4 +1,4 @@
-#' My ggplot2 go-to theme inspired by \code{hrbrmisc}
+#' RODBC::sqlQuery wrapper
 #' Just return a tibble instead of a data.frame object.
 #' @param ... Same arguments as \code{RODBC::sqlQuery}
 #' @importFrom dplyr tbl_df
