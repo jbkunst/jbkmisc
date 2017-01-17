@@ -1,27 +1,3 @@
-#' Load fonts
-#' @importFrom sysfonts font.add.google
-#' @importFrom showtext showtext.auto
-#' @export
-load_fonts <- function() {
-  # system
-  # extrafont::font_import()
-  extrafont::font_import(pattern = "calibri\\.|arial\\.", prompt = FALSE)
-  # extrafont::fonts()
-
-  # google
-  # font.add.google("Open Sans Condensed", regular.wt = 300, bold.wt = 700)
-  # font.add.google("PT Sans Narrow")
-  # font.add.google("Lato")
-  # font.add.google("Roboto")
-  # font.add.google("Roboto Condensed")
-
-
-
-  showtext::showtext.auto()
-
-  invisible()
-}
-
 #' My ggplot2 go-to theme inspired by \code{hrbrmisc}
 #'
 #' @param base_family base_family

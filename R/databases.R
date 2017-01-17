@@ -4,22 +4,21 @@
 #'
 #' @param ... Same arguments as \code{RODBC::sqlQuery}
 #' @export
-sqlquery <- function(...) {
+sqlQuery <- function(...) {
   res <- RODBC::sqlQuery(...)
   if(is.data.frame(res)){
     res <- dplyr::tbl_df(res) %>%
-      purrr::map_if(is.factor, as.character) %>%
-      dplyr::as_data_frame()
+      purrr::dmap_if(is.factor, as.character)
   }
   res
 }
 
 #' Execute a query given fields
-#'
-#'
-#'
+#' @param chn chn
+#' @param table A table name
+#' @param fields fields
 #' @importFrom whisker whisker.render
-#' @importFrom stringr str_detect
+#' @importFrom stringr str_detect str_replace
 #' @export
 sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
 
@@ -32,9 +31,10 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
   )
 
   names <- fields %>%
-    gsub("\\(", "_of_", .) %>%
-    gsub("\\)", "", .) %>%
-    paste(fields, "as", .)
+    str_replace("\\(", "_of_") %>%
+    str_replace("\\)", "")
+
+  names <- paste(fields, "as", names)
 
   names <- ifelse(is_op, names, fields)
 
@@ -57,13 +57,6 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
 
   message("exec:\n", q)
 
-  sqlquery(chn, q)
+  sqlQuery(chn, q)
 
-}
-
-#' Pers to date
-#' @importFrom lubridate ymd
-#' @export
-per_to_date <- function(pers = c(200902, 201912)){
-  lubridate::ymd(paste0(pers, "01"))
 }
