@@ -3,3 +3,7 @@
 language: r
 warnings_are_errors: true
 sudo: required
+
+install:
+    - ./travis-tool.sh aptget_install r-cran-rodbc
+    - ./travis-tool.sh install_deps
