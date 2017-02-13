@@ -7,6 +7,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 library(jbkmisc)
 library(printr)
+library(lubridate)
 ```
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
@@ -22,6 +23,17 @@ ym_to_date(ym = c(200902, 201912), day = 1)
 
 ```{r}
 ym_diff(ym = c(200902, 201912), ym2 = c(200901, 201712))
+```
+
+* `ym_div`
+
+```{r}
+year <- format(ymd(20170101) + months(0:11), "%Y%m")
+year
+
+ym_div(year, d = 3)
+
+ym_div(year, d = 4)
 ```
 
 ## dplyrs
