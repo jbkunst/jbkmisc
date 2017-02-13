@@ -12,7 +12,7 @@ ccount_(data, ...)
 \arguments{
 \item{data}{A data frame.}
 
-\item{...}{Variables to group by.}
+\item{...}{Variables to group by, \code{count} arguments.}
 }
 \description{
 Count the counts

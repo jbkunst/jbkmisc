@@ -31,12 +31,20 @@ ym_diff(ym = c(200902, 201912), ym2 = c(200901, 201712))
 year <- format(ymd(20170101) + months(0:11), "%Y%m")
 year
 
-ym_div(year, d = 3)
+ym_div(year, ng = 3)
 
-ym_div(year, d = 4)
+ym_div(year, ng = 4)
 ```
 
 ## dplyrs
+
+* `countp`
+
+```{r}
+countp(mtcars, cyl)
+countp(mtcars, cyl, am)
+```
+
 
 * `ccount`
 ```{r}
