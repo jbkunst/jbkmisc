@@ -22,5 +22,7 @@ Imports:
   purrr,
   lubridate,
   stringr,
-  whisker
+  whisker,
+  hrbrthemes,
+  extrafont
 

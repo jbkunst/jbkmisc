@@ -4,26 +4,29 @@
 \alias{theme_jbk}
 \title{My ggplot2 go-to theme inspired by \code{hrbrmisc}}
 \usage{
-theme_jbk(base_family = "Calibri Ligth", plot_title_family = "Arial Narrow",
-  plot_title_face = "plain", striptext_family = plot_title_family,
-  striptext_face = plot_title_face, strip_inverse = FALSE, base_size = 11)
+theme_jbk(...)
 }
 \arguments{
-\item{base_family}{base_family}
-
-\item{plot_title_family}{plot_title_family}
-
-\item{plot_title_face}{plot_title_face}
-
-\item{striptext_family}{striptext_family}
-
-\item{striptext_face}{striptext_face}
-
-\item{strip_inverse}{strip_inverse}
-
-\item{base_size}{base_size}
+\item{...}{Parameters}
 }
 \description{
 My ggplot2 go-to theme inspired by \code{hrbrmisc}
+}
+\examples{
+
+require(ggplot2)
+require(hrbrthemes)
+require(extrafont)
+loadfonts(device = "win")
+
+ggplot(mtcars) +
+  geom_point(aes(mpg, hp, color = factor(carb))) +
+  scale_color_ipsum() +
+  labs(x="Fuel effiiency (mpg)", y="Weight (tons)",
+       title="Seminal ggplot2 scatterplot example",
+       subtitle="A plot that is only useful for demonstration purposes",
+       caption="Brought to you by the letter 'g'") +
+ theme_jbk()
+
 }
 
