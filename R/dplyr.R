@@ -29,14 +29,13 @@ ccount_ <- function(data, ...) {
 #' countp(mtcars, cyl, am)
 #' countp(mtcars, cyl, am, ungroup = FALSE)
 #' countp(iris, "Species")
-#' @importFrom dplyr ungroup mutate
+#' @importFrom dplyr ungroup mutate_
 #' @export
 countp <- function(data, ..., ungroup = TRUE) {
-
 
   dc <- count(data, ...)
   if(ungroup) dc <- ungroup(dc)
 
-  mutate(dc, p = n/sum(n))
+  mutate_(dc, "p" = "n/sum(n)")
 
 }

@@ -30,3 +30,37 @@ theme_jbk <- function(...) {
       )
 
 }
+
+
+#' Auxiliar function to generate a filename following a pattern
+#' @param folder .
+#' @param pattern .
+#' @param ext .
+#' @param npad .
+#' @importFrom stringr str_pad str_c
+#' @export
+filename_gen <- function(folder = "plots", pattern = "plot", ext = "jpg", npad = 2) {
+  n <- length(dir(folder, pattern = pattern))
+  n <- n + 1
+  n <- str_pad(n, npad, pad = "0")
+  file.path(folder, str_c(pattern, "_", n, ".", ext))
+}
+
+#' Function to save the last_plot using filename_gen
+#' @param folder .
+#' @param pattern .
+#' @param ext .
+#' @param npad .
+#' @param width .
+#' @param height .
+#' @param scale .
+#' @importFrom ggplot2 ggsave
+#' @export
+ggsav <- function(folder = "plots", pattern = "plot", ext = "jpg", npad = 2,
+                  width = 16, height = 9, scale = 0.75) {
+  fn <- filename_gen(folder, pattern = pattern, ext = ext)
+  message("saving: ", fn)
+  ggsave(fn, width = width, height = height, scale = scale)
+}
+
+

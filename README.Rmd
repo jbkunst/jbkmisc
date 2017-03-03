@@ -64,6 +64,8 @@ get_my_local_ip()
 
 ## ggtheme
 * `theme_jbk`
+* `ggsav` and `filename_gen`: Automatic generation file names given a pattern
+to save without worry about names :D.
 
 ## blog
 * `spin_jekyll_post`: My custom spin r file to md and move the widgets, etc.
