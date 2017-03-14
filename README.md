@@ -55,6 +55,8 @@ dplyrs
 countp(mtcars, cyl)
 ```
 
+    ## Warning: package 'bindrcpp' was built under R version 3.3.2
+
 |  cyl|    n|        p|
 |----:|----:|--------:|
 |    4|   11|  0.34375|
@@ -104,6 +106,7 @@ ggtheme
 -------
 
 -   `theme_jbk`
+-   `ggsav` and `filename_gen`: Automatic generation file names given a pattern to save without worry about names :D.
 
 blog
 ----
@@ -115,5 +118,6 @@ blog
 databases
 ---------
 
--   `sqlQuery`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
+-   `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
 -   `sqlquery2`: Do a sqlQuery given a channel, a table name and fields. If there are a sum, count etc, aumatically do the group by with the other fields
+-   `sqlFecth2`: Do the same as `sqlFecth` but fixes the `is.POSIXct ambiguous format`

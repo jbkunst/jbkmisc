@@ -73,7 +73,8 @@ to save without worry about names :D.
 * `giphy`: Put a giphy image given the id.
 
 ## databases
-* `sqlQuery`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
+* `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
 * `sqlquery2`: Do a sqlQuery given a channel, a table name and fields. If 
 there are a sum, count etc, aumatically do the group by with the other 
 fields
+* `sqlFecth2`: Do the same as `sqlFecth` but fixes the `is.POSIXct ambiguous format`

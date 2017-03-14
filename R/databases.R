@@ -3,7 +3,7 @@
 #' @param ... Same arguments as \code{RODBC::sqlQuery}
 #' @importFrom dplyr tbl_df
 #' @export
-sqlQuery <- function(...) {
+sqlQuery2 <- function(...) {
 
   res <- RODBC::sqlQuery(...)
 
@@ -13,6 +13,41 @@ sqlQuery <- function(...) {
 
   res
 }
+
+#' RODBC::sqlFetch wrapper
+#' Just return a tibble instead of a data.frame object and fixes the
+#' \code{ambigous format} casting to character the datetime values
+#' @param channel Connection handle returned by odbcConnect.
+#' @param sqtable	A database table name accessible from the connected DSN
+#' @importFrom purrr map_lgl map dmap_if
+#' @importFrom RODBC sqlQuery sqlFetch
+#' @export
+sqlFetch2 <- function(channel, sqtable) {
+
+  daux <- sqlQuery(channel, sprintf("select top 10 * from %s", sqtable))
+
+  if(any(map_lgl(daux, lubridate::is.POSIXct))) {
+    message("casting to char", paste(names(daux)[map_lgl(daux, lubridate::is.POSIXct)], collapse = ", "))
+
+    dt <- as.logical(map(map(daux, class), length) == 2)
+    vars <- tolower(names(daux))
+    vars <- ifelse(dt, sprintf("cast(%s as char) %s", vars, vars), vars)
+
+    dres <- sqlQuery(channel, sprintf("select %s from %s", paste(vars, collapse = ","), sqtable))
+
+  } else {
+    dres <- sqlFetch(channel, sqtable)
+  }
+
+  if(any(map_lgl(dres, is.factor))) {
+    dres <- dmap_if(dres, is.factor, as.character)
+  }
+
+  dres <- tbl_df(dres)
+
+  dres
+}
+
 
 #' Execute a query given fields
 #' @param chn chn
@@ -58,6 +93,6 @@ sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
 
   if(getOption("jbkmisc.verbose")) message("exec:\n", q)
 
-  sqlQuery(chn, q)
+  sqlQuery2(chn, q)
 
 }
