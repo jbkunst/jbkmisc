@@ -9,4 +9,3 @@ get_my_local_ip()
 \description{
 Get local IP
 }
-

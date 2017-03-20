@@ -25,4 +25,3 @@ blog_set_chunk(message = FALSE, warning = FALSE, fig.showtext = TRUE,
 \description{
 Blog setup
 }
-

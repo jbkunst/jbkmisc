@@ -29,4 +29,3 @@ ggplot(mtcars) +
  theme_jbk()
 
 }
-

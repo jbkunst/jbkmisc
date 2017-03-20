@@ -12,4 +12,3 @@ wf_create_folders(dir = ".")
 \description{
 Generate structure
 }
-

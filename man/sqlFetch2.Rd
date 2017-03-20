@@ -18,4 +18,3 @@ RODBC::sqlFetch wrapper
 Just return a tibble instead of a data.frame object and fixes the
 \code{ambigous format} casting to character the datetime values
 }
-

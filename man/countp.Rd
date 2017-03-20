@@ -22,4 +22,3 @@ countp(mtcars, cyl, am)
 countp(mtcars, cyl, am, ungroup = FALSE)
 countp(iris, "Species")
 }
-

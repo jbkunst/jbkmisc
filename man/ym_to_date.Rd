@@ -14,4 +14,3 @@ ym_to_date(ym = c(200902, 201912), day = 1)
 \description{
 Year month string to date
 }
-
