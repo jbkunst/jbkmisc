@@ -2,15 +2,15 @@
 % Please edit documentation in R/ggtheme.R
 \name{theme_jbk}
 \alias{theme_jbk}
-\title{My ggplot2 go-to theme inspired by \code{hrbrmisc}}
+\title{My ggplot2 go-to theme inspired by \code{hrbrthemes}}
 \usage{
 theme_jbk(...)
 }
 \arguments{
-\item{...}{Parameters}
+\item{...}{Parameters for \code{hrbrthemes::theme_ipsum}}
 }
 \description{
-My ggplot2 go-to theme inspired by \code{hrbrmisc}
+My ggplot2 go-to theme inspired by \code{hrbrthemes}
 }
 \examples{
 

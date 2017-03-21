@@ -1,11 +1,12 @@
 #' RODBC::sqlQuery wrapper
 #' Just return a tibble instead of a data.frame object.
-#' @param ... Same arguments as \code{RODBC::sqlQuery}
+#' @param channel Connection handle as returned by odbcConnect.
+#' @param query Any valid SQL statement.
 #' @importFrom dplyr tbl_df
 #' @export
-sqlQuery2 <- function(...) {
+sqlQuery2 <- function(channel, query) {
 
-  res <- RODBC::sqlQuery(...)
+  res <- RODBC::sqlQuery(channel, query)
 
   if(is.data.frame(res)){
     res <- tbl_df(res)

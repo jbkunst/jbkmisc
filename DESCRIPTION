@@ -24,4 +24,5 @@ Imports:
   stringr,
   whisker,
   hrbrthemes,
-  extrafont
+  extrafont,
+  R6
