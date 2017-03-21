@@ -4,6 +4,6 @@
   # library(extrafont)
   # extrafont::font_import(pattern = "")
   extrafont::fonts()
-  extrafont::loadfonts(device = "win")
+  extrafont::loadfonts(device = "win", quiet = TRUE)
 
 }
