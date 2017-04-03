@@ -12,6 +12,12 @@ library(lubridate)
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
 
+## Installation
+
+```
+source("https://install-github.me/jbkunst/jbkmisc")
+```
+
 ## date
 
 * `ym_to_date`
