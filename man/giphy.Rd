@@ -16,4 +16,3 @@ giphy(id = "RgfGmnVvt8Pfy", txt_ttl = "giphy gif", addsource = TRUE)
 \description{
 Creating a md image and link source from a giphy url
 }
-

@@ -25,4 +25,3 @@ ggsav(folder = "plots", pattern = "plot", ext = "jpg", npad = 2,
 \description{
 Function to save the last_plot using filename_gen
 }
-

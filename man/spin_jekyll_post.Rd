@@ -12,4 +12,3 @@ spin_jekyll_post(r_script)
 \description{
 Spin to md jekyll post
 }
-

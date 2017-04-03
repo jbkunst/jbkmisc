@@ -18,4 +18,3 @@ filename_gen(folder = "plots", pattern = "plot", ext = "jpg", npad = 2)
 \description{
 Auxiliar function to generate a filename following a pattern
 }
-

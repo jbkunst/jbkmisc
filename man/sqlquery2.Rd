@@ -16,4 +16,3 @@ sqlquery2(chn, table = "atable", fields = c("var1", "sum(var2)"))
 \description{
 Execute a query given fields
 }
-

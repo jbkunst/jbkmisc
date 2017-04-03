@@ -21,4 +21,3 @@ Count the counts
 ccount(iris, Species)
 ccount_(iris, "Species")
 }
-

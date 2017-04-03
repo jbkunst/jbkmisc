@@ -1,5 +1,5 @@
-#' My ggplot2 go-to theme inspired by \code{hrbrmisc}
-#' @param ... Parameters
+#' My ggplot2 go-to theme inspired by \code{hrbrthemes}
+#' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
 #' @importFrom ggplot2 theme_set theme element_line
 #' @importFrom hrbrthemes theme_ipsum
 #' @importFrom grDevices windowsFonts
@@ -24,8 +24,9 @@ theme_jbk <- function(...) {
 
   theme_ipsum(base_family = "Calibri Light") +
     theme(
-      panel.grid.major = element_line(colour = "grey80"),
+      panel.grid.major = element_line(colour = "grey90"),
       panel.grid.minor = element_line(colour = "grey90"),
+      legend.position = "bottom",
       ...
       )
 
