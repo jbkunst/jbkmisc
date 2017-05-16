@@ -3,6 +3,11 @@ jbkmisc
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
 
+Installation
+------------
+
+    source("https://install-github.me/jbkunst/jbkmisc")
+
 date
 ----
 
@@ -95,7 +100,7 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "10.27.5.239"
+    ## [1] "192.168.1.33"
 
 Workflow
 --------

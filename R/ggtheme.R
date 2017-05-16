@@ -22,12 +22,11 @@
 #' @export
 theme_jbk <- function(...) {
 
-  theme_ipsum(base_family = "Calibri Light") +
+  theme_ipsum(base_family = "Calibri Light", ...) +
     theme(
       panel.grid.major = element_line(colour = "grey90"),
       panel.grid.minor = element_line(colour = "grey90"),
-      legend.position = "bottom",
-      ...
+      legend.position = "bottom"
       )
 
 }
