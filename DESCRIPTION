@@ -17,6 +17,7 @@ Imports:
   rvest,
   magrittr,
   htmlwidgets,
+  shiny,
   RODBC,
   dplyr,
   purrr,
@@ -25,4 +26,5 @@ Imports:
   whisker,
   hrbrthemes,
   extrafont,
-  R6
+  R6,
+  htmltools

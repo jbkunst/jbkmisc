@@ -5,6 +5,8 @@
 #' @importFrom grDevices windowsFonts
 #' @examples
 #'
+#'
+#' \dontrun{
 #' require(ggplot2)
 #' require(hrbrthemes)
 #' require(extrafont)
@@ -18,6 +20,7 @@
 #'        subtitle="A plot that is only useful for demonstration purposes",
 #'        caption="Brought to you by the letter 'g'") +
 #'  theme_jbk()
+#' }
 #'
 #' @export
 theme_jbk <- function(...) {
