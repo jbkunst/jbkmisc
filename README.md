@@ -123,10 +123,7 @@ Workflow
 ggtheme
 -------
 
--   `theme_jbk`:
--   Based on `hrbrthemes::theme_ipsum`
--   Soft gridline color
--   Legend at top for more horizontal space.
+-   `theme_jbk`: Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more horizontal space.
 
 ``` r
 library(ggplot2)

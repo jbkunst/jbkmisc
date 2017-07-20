@@ -44,7 +44,8 @@ blog_set_chunk <- function(
 #' @importFrom knitr opts_chunk opts_knit asis_output knit2html spin
 #' @export
 spin_jekyll_post <- function(r_script){
-
+  `<<-` <- NULL
+  knit_print.htmlwidget <- NULL
   #### pars ####
   t0 <- Sys.time()
   folder_name <- gsub("^\\d{4}-\\d{2}-\\d{2}-|\\.R$", "", basename(r_script))
