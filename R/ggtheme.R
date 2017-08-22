@@ -2,7 +2,6 @@
 #' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
 #' @importFrom ggplot2 theme_set theme element_line
 #' @importFrom hrbrthemes theme_ipsum
-#' @importFrom grDevices windowsFonts
 #' @examples
 #'
 #'
@@ -10,7 +9,7 @@
 #' require(ggplot2)
 #' require(hrbrthemes)
 #' require(extrafont)
-#' loadfonts(device = "win")
+#' loadfonts()
 #'
 #' ggplot(mtcars) +
 #'   geom_point(aes(mpg, hp, color = factor(carb))) +
