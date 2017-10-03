@@ -35,6 +35,7 @@ theme_jbk <- function(...) {
 
 #' My ggplot2 null theme
 #' @param ... Parameters
+#' @export
 theme_null <- function(...) {
   theme(...,
         axis.line=element_blank(),
