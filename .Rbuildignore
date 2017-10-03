@@ -4,3 +4,5 @@ dev/
 ^\.travis\.yml$
 ^README\.Rmd$
 ^README-.*\.png$
+
+README_files/*

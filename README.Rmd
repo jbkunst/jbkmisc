@@ -1,16 +1,22 @@
 ---
 title: "jbkmisc"
-output: github_document
+output:
+  github_document:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(jbkmisc)
 library(printr)
 library(lubridate)
 ```
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
+
+## Why? What?
+
+Idk. Just things I need sometimes, just helpers for my __laziness__.
 
 ## Installation
 
@@ -69,14 +75,48 @@ get_my_local_ip()
 * `wf_create_folders`: crate data, code and output folder.
 
 ## ggtheme
-* `theme_jbk`
+
+* `theme_jbk`: Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more horizontal space.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(viridis)
+
+data("diamonds")
+d <- diamonds %>% 
+  filter(color %in% c("E", "J", "H")) %>% 
+  filter(cut %in% c("Ideal", "Premium", "Very Good")) %>% 
+  sample_n(10000)
+theme_set(theme_jbk())
+
+ggplot(d, aes(carat, price)) + 
+  geom_point(aes(color = clarity), size = 0.1) + 
+  geom_smooth() + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_color_viridis(discrete = TRUE) + 
+  facet_grid(cut ~ color, scales = "free") + 
+  labs(
+    title = "This is a Title",
+    subtutle = "This is a longer subtitle",
+    caption = "A caption which nobody read but it looks important"
+  )
+```
+
 * `ggsav` and `filename_gen`: Automatic generation file names given a pattern
 to save without worry about names :D.
 
-## blog
+## blog & presentations
 * `spin_jekyll_post`: My custom spin r file to md and move the widgets, etc.
 * `blog_set_chunk`: Set opt chunk with my preferences
 * `giphy`: Put a giphy image given the id.
+* `ico`:
+
+```{r}
+ico("tv", "red")
+R()
+```
+
 
 ## databases
 * `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.

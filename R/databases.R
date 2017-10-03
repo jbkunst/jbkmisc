@@ -1,4 +1,4 @@
-#' RODBC::sqlQuery wrapper
+#' RODBC sqlQuery wrapper
 #' Just return a tibble instead of a data.frame object.
 #' @param channel Connection handle as returned by odbcConnect.
 #' @param query Any valid SQL statement.
@@ -58,7 +58,7 @@ sqlFetch2 <- function(channel, sqtable) {
 #' @importFrom whisker whisker.render
 #' @importFrom stringr str_detect str_replace
 #' @export
-sqlquery2 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
+sqlquery22 <- function(chn, table = "atable", fields = c("var1", "sum(var2)")) {
 
   # fields <- c("id_mes", "grupo_producto", "id_producto", "sum(saldo_credito)", "count(1)")
   # table <- "dbo.fa_modelo_riesgo_ec"

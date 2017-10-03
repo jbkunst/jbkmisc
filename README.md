@@ -1,7 +1,22 @@
 jbkmisc
 ================
 
+-   [Why? What?](#why-what)
+-   [Installation](#installation)
+-   [date](#date)
+-   [dplyrs](#dplyrs)
+-   [shiny](#shiny)
+-   [Workflow](#workflow)
+-   [ggtheme](#ggtheme)
+-   [blog & presentations](#blog-presentations)
+-   [databases](#databases)
+
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
+
+Why? What?
+----------
+
+Idk. Just things I need sometimes, just helpers for my **laziness**.
 
 Installation
 ------------
@@ -60,8 +75,6 @@ dplyrs
 countp(mtcars, cyl)
 ```
 
-    ## Warning: package 'bindrcpp' was built under R version 3.3.2
-
 |  cyl|    n|        p|
 |----:|----:|--------:|
 |    4|   11|  0.34375|
@@ -100,7 +113,7 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "192.168.1.33"
+    ## [1] "10.27.5.239"
 
 Workflow
 --------
@@ -110,15 +123,56 @@ Workflow
 ggtheme
 -------
 
--   `theme_jbk`
+-   `theme_jbk`: Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more horizontal space.
+
+``` r
+library(ggplot2)
+library(dplyr)
+library(viridis)
+
+data("diamonds")
+d <- diamonds %>% 
+  filter(color %in% c("E", "J", "H")) %>% 
+  filter(cut %in% c("Ideal", "Premium", "Very Good")) %>% 
+  sample_n(10000)
+theme_set(theme_jbk())
+
+ggplot(d, aes(carat, price)) + 
+  geom_point(aes(color = clarity), size = 0.1) + 
+  geom_smooth() + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_color_viridis(discrete = TRUE) + 
+  facet_grid(cut ~ color, scales = "free") + 
+  labs(
+    title = "This is a Title",
+    subtutle = "This is a longer subtitle",
+    caption = "A caption which nobody read but it looks important"
+  )
+```
+
+![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-7-1.png)
+
 -   `ggsav` and `filename_gen`: Automatic generation file names given a pattern to save without worry about names :D.
 
-blog
-----
+blog & presentations
+--------------------
 
 -   `spin_jekyll_post`: My custom spin r file to md and move the widgets, etc.
 -   `blog_set_chunk`: Set opt chunk with my preferences
 -   `giphy`: Put a giphy image given the id.
+-   `ico`:
+
+``` r
+ico("tv", "red")
+```
+
+    ## [1] "<span style=\"color:red\">\n  <i class=\"fa fa-tv\"></i>\n</span>"
+
+``` r
+R()
+```
+
+    ## [1] "<span style=\"color:#2066B9;font-weight:500\">R</span>"
 
 databases
 ---------

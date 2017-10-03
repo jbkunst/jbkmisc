@@ -44,7 +44,8 @@ blog_set_chunk <- function(
 #' @importFrom knitr opts_chunk opts_knit asis_output knit2html spin
 #' @export
 spin_jekyll_post <- function(r_script){
-
+  `<<-` <- NULL
+  knit_print.htmlwidget <- NULL
   #### pars ####
   t0 <- Sys.time()
   folder_name <- gsub("^\\d{4}-\\d{2}-\\d{2}-|\\.R$", "", basename(r_script))
@@ -165,4 +166,33 @@ giphy <- function(id = "RgfGmnVvt8Pfy", txt_ttl =  "giphy gif", addsource = TRUE
 
   asis_output(md)
 
+}
+
+#' Creating FA ico given name and color
+#'
+#' @param x Name of icon
+#' @param color A color
+#' @importFrom htmltools tags
+#' @importFrom shiny icon
+#' @export
+ico <- function(x = "tv", color = NULL) {
+  # color <- "red"
+  as.character(tags$span(icon(x), style = sprintf("color:%s", color)))
+}
+
+#' Creating a R blue letter
+#'
+#' @export
+R <- function() {
+  as.character(tags$span("R", style = "color:#2066B9;font-weight:500"))
+}
+
+#' Save widget for presentations which share same folder
+#'
+#' @param w Widget.
+#' @param f File name.
+#' @importFrom htmlwidgets saveWidget
+#' @export
+sw <- function(w, f) {
+  saveWidget(widget = w, file = f, libdir = "index_files/", selfcontained = FALSE, background = "transparent")
 }
