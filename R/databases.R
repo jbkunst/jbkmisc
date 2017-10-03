@@ -20,7 +20,8 @@ sqlQuery2 <- function(channel, query) {
 #' \code{ambigous format} casting to character the datetime values
 #' @param channel Connection handle returned by odbcConnect.
 #' @param sqtable	A database table name accessible from the connected DSN
-#' @importFrom purrr map_lgl map dmap_if
+#' @importFrom purrr map_lgl map
+#' @importFrom dplyr mutate_if
 #' @importFrom RODBC sqlQuery sqlFetch
 #' @export
 sqlFetch2 <- function(channel, sqtable) {
@@ -41,7 +42,7 @@ sqlFetch2 <- function(channel, sqtable) {
   }
 
   if(any(map_lgl(dres, is.factor))) {
-    dres <- dmap_if(dres, is.factor, as.character)
+    dres <- mutate_if(dres, is.factor, as.character)
   }
 
   dres <- tbl_df(dres)
