@@ -1,7 +1,8 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrthemes}
 #' @param base_family base_family
 #' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
-#' @importFrom ggplot2 theme_set theme element_line element_blank
+#' @importFrom ggplot2 theme_set theme element_line element_blank element_rect
+#'   element_text
 #' @importFrom hrbrthemes theme_ipsum
 #' @examples
 #'

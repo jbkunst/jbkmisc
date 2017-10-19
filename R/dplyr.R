@@ -1,7 +1,7 @@
 #' sanitize data
 #' This is a wrapper of janitor package
 #' @param data A data frame.
-#' @importFrom janitor clean_names
+#' @importFrom janitor clean_names remove_empty_cols
 #' @export
 sanitize_data <- function(data) {
   data %>%
@@ -45,7 +45,7 @@ ccount_ <- function(data, ...) {
 #' countp(iris, "Species")
 #' @importFrom dplyr ungroup mutate_
 #' @export
-countp <- function(data, ..., sort = TRUE, add_pcum = TRUE, ungroup = TRUE) {
+countp <- function(data, ..., sort = FALSE, add_pcum = TRUE, ungroup = TRUE) {
 
   dc <- count(data, ..., sort = sort)
   if(ungroup) dc <- ungroup(dc)
@@ -53,5 +53,7 @@ countp <- function(data, ..., sort = TRUE, add_pcum = TRUE, ungroup = TRUE) {
   dc <- mutate_(dc, "p" = "n/sum(n)")
 
   if(add_pcum) dc <- mutate_(dc, "pcum" = "cumsum(p)")
+
+  dc
 
 }
