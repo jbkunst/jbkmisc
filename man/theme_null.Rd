@@ -2,9 +2,12 @@
 % Please edit documentation in R/ggtheme.R
 \name{theme_null}
 \alias{theme_null}
+\alias{tomorrow_night}
 \title{My ggplot2 null theme}
 \usage{
 theme_null(...)
+
+tomorrow_night(...)
 }
 \arguments{
 \item{...}{Parameters}

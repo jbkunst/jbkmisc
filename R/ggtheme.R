@@ -1,6 +1,7 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrthemes}
+#' @param base_family base_family
 #' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
-#' @importFrom ggplot2 theme_set theme element_line
+#' @importFrom ggplot2 theme_set theme element_line element_blank
 #' @importFrom hrbrthemes theme_ipsum
 #' @examples
 #'
@@ -22,9 +23,9 @@
 #' }
 #'
 #' @export
-theme_jbk <- function(...) {
+theme_jbk <- function(base_family = "", ...) {
 
-  theme_ipsum(...) +
+  theme_ipsum(base_family = base_family, ...) +
     theme(
       panel.grid.major = element_line(colour = "grey90"),
       panel.grid.minor = element_line(colour = "grey90"),
@@ -51,6 +52,22 @@ theme_null <- function(...) {
         panel.grid.minor=element_blank(),
         plot.background=element_blank())
 }
+
+#' @rdname theme_null
+tomorrow_night <- function(...) {
+  bgrcol <- "#1D1F21"
+  txtcol <- "#C5C8C6"
+  grlcol <- "#666666"
+
+  theme(...,
+        rect = element_rect(fill = bgrcol, linetype = NULL),
+        panel.background = element_blank(),
+        text = element_text(colour = txtcol),
+        panel.grid.major = element_line(colour = grlcol),
+        panel.grid.minor = element_line(colour = grlcol),
+        legend.position = "bottom")
+}
+
 
 
 #' Auxiliar function to generate a filename following a pattern

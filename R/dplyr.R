@@ -1,3 +1,15 @@
+#' sanitize data
+#' This is a wrapper of janitor package
+#' @param data A data frame.
+#' @importFrom janitor clean_names
+#' @export
+sanitize_data <- function(data) {
+  data %>%
+    clean_names() %>%
+    tbl_df() %>%
+    remove_empty_cols()
+}
+
 #' Count the counts
 #' @param data A data frame.
 #' @param ... Variables to group by, \code{count} arguments.
@@ -23,6 +35,8 @@ ccount_ <- function(data, ...) {
 #' Add percent to \code{count}
 #' @param data A data frame.
 #' @param ... Variables to group by, \code{count} arguments.
+#' @param sort same sort argument.
+#' @param add_pcum Add or not cumulative percent column.
 #' @param ungroup Remove the group before calculate the percents.
 #' @examples
 #' countp(mtcars, cyl)
@@ -31,11 +45,13 @@ ccount_ <- function(data, ...) {
 #' countp(iris, "Species")
 #' @importFrom dplyr ungroup mutate_
 #' @export
-countp <- function(data, ..., ungroup = TRUE) {
+countp <- function(data, ..., sort = TRUE, add_pcum = TRUE, ungroup = TRUE) {
 
-  dc <- count(data, ...)
+  dc <- count(data, ..., sort = sort)
   if(ungroup) dc <- ungroup(dc)
 
-  mutate_(dc, "p" = "n/sum(n)")
+  dc <- mutate_(dc, "p" = "n/sum(n)")
+
+  if(add_pcum) dc <- mutate_(dc, "pcum" = "cumsum(p)")
 
 }

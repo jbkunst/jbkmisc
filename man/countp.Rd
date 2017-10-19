@@ -4,12 +4,16 @@
 \alias{countp}
 \title{Add percent to \code{count}}
 \usage{
-countp(data, ..., ungroup = TRUE)
+countp(data, ..., sort = TRUE, add_pcum = TRUE, ungroup = TRUE)
 }
 \arguments{
 \item{data}{A data frame.}
 
 \item{...}{Variables to group by, \code{count} arguments.}
+
+\item{sort}{same sort argument.}
+
+\item{add_pcum}{Add or not cumulative percent column.}
 
 \item{ungroup}{Remove the group before calculate the percents.}
 }
