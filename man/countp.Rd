@@ -4,7 +4,7 @@
 \alias{countp}
 \title{Add percent to \code{count}}
 \usage{
-countp(data, ..., sort = TRUE, add_pcum = TRUE, ungroup = TRUE)
+countp(data, ..., sort = FALSE, add_pcum = TRUE, ungroup = TRUE)
 }
 \arguments{
 \item{data}{A data frame.}

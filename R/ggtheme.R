@@ -1,5 +1,6 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrthemes}
 #' @param base_family base_family
+#' @param plot_title_face plot_title_face
 #' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
 #' @importFrom ggplot2 theme_set theme element_line element_blank element_rect
 #'   element_text
@@ -24,10 +25,12 @@
 #' }
 #'
 #' @export
-theme_jbk <- function(base_family = "", ...) {
+theme_jbk <- function(base_family = "", plot_title_face = "plain", ...) {
 
-  theme_ipsum(base_family = base_family, ...) +
+  theme_ipsum(base_family = base_family, plot_title_face = plot_title_face,
+              plot_margin = margin(15, 15, 15, 15), ...) +
     theme(
+      title = element_text(colour = "#444444"),
       panel.grid.major = element_line(colour = "grey90"),
       panel.grid.minor = element_line(colour = "grey90"),
       legend.position = "bottom"

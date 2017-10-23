@@ -31,3 +31,18 @@ var_importance.RRF <- function(x) {
     setNames(c("variable", "importance")) %>%
     dplyr::arrange_("desc(importance)")
 }
+
+#' Get rules from partykit object
+#' @param x A party object.
+# library(partykit)
+# x <- ctree(Species ~ .,data = iris)
+# list_rules_party(x)
+#' @export
+list_rules_party <- function(x) {
+  rules <- partykit:::.list.rules.party(x)
+  out <- data.frame(
+    node = as.numeric(names(rules)),
+    rule = as.vector(rules)
+  )
+  out
+}

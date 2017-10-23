@@ -31,5 +31,6 @@ Imports:
   tibble,
   randomForest,
   RRF,
-  janitor
+  janitor,
+  partykit
   
