@@ -3,6 +3,8 @@ title: "jbkmisc"
 output:
   github_document:
     toc: true
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -72,7 +74,7 @@ get_my_local_ip()
 ```
 
 ## Workflow
-* `wf_create_folders`: crate data, code and output folder.
+* `wf_create_folders`: crate `data`, `code` and `output` folder.
 
 ## ggtheme
 
@@ -117,6 +119,19 @@ ico("tv", "red")
 R()
 ```
 
+## Model helpers
+
+```{r}
+rf <- randomForest::randomForest(Species ~ ., data = iris)
+var_importance(rf)
+
+rrf <- RRF::RRF(Species ~ ., data = iris)
+var_importance(rrf)
+
+ct <- partykit::ctree(Species ~ ., data = iris)
+list_rules_party(ct)
+```
+
 
 ## databases
 * `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
@@ -124,3 +139,5 @@ R()
 there are a sum, count etc, aumatically do the group by with the other 
 fields
 * `sqlFecth2`: Do the same as `sqlFecth` but fixes the `is.POSIXct ambiguous format`
+
+

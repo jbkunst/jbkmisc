@@ -9,6 +9,7 @@ jbkmisc
 -   [Workflow](#workflow)
 -   [ggtheme](#ggtheme)
 -   [blog & presentations](#blog-presentations)
+-   [Model helpers](#model-helpers)
 -   [databases](#databases)
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
@@ -75,24 +76,24 @@ dplyrs
 countp(mtcars, cyl)
 ```
 
-|  cyl|    n|        p|
-|----:|----:|--------:|
-|    4|   11|  0.34375|
-|    6|    7|  0.21875|
-|    8|   14|  0.43750|
+|  cyl|    n|        p|     pcum|
+|----:|----:|--------:|--------:|
+|    4|   11|  0.34375|  0.34375|
+|    6|    7|  0.21875|  0.56250|
+|    8|   14|  0.43750|  1.00000|
 
 ``` r
 countp(mtcars, cyl, am)
 ```
 
-|  cyl|   am|    n|        p|
-|----:|----:|----:|--------:|
-|    4|    0|    3|  0.09375|
-|    4|    1|    8|  0.25000|
-|    6|    0|    4|  0.12500|
-|    6|    1|    3|  0.09375|
-|    8|    0|   12|  0.37500|
-|    8|    1|    2|  0.06250|
+|  cyl|   am|    n|        p|     pcum|
+|----:|----:|----:|--------:|--------:|
+|    4|    0|    3|  0.09375|  0.09375|
+|    4|    1|    8|  0.25000|  0.34375|
+|    6|    0|    4|  0.12500|  0.46875|
+|    6|    1|    3|  0.09375|  0.56250|
+|    8|    0|   12|  0.37500|  0.93750|
+|    8|    1|    2|  0.06250|  1.00000|
 
 -   `ccount`
 
@@ -113,12 +114,12 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "10.27.5.239"
+    ## [1] "192.168.43.116" "172.20.134.208"
 
 Workflow
 --------
 
--   `wf_create_folders`: crate data, code and output folder.
+-   `wf_create_folders`: crate `data`, `code` and `output` folder.
 
 ggtheme
 -------
@@ -173,6 +174,45 @@ R()
 ```
 
     ## [1] "<span style=\"color:#2066B9;font-weight:500\">R</span>"
+
+Model helpers
+-------------
+
+``` r
+rf <- randomForest::randomForest(Species ~ ., data = iris)
+var_importance(rf)
+```
+
+| variable     |  importance|
+|:-------------|-----------:|
+| Petal.Width  |   43.543430|
+| Petal.Length |   42.989321|
+| Sepal.Length |   10.092362|
+| Sepal.Width  |    2.637528|
+
+``` r
+rrf <- RRF::RRF(Species ~ ., data = iris)
+var_importance(rrf)
+```
+
+| variable     |  importance|
+|:-------------|-----------:|
+| Petal.Width  |   49.940993|
+| Petal.Length |   46.830597|
+| Sepal.Width  |    1.291728|
+| Sepal.Length |    1.237187|
+
+``` r
+ct <- partykit::ctree(Species ~ ., data = iris)
+list_rules_party(ct)
+```
+
+|  node| rule                                                                   |
+|-----:|:-----------------------------------------------------------------------|
+|     2| Petal.Length &lt;= 1.9                                                 |
+|     5| Petal.Length &gt; 1.9 & Petal.Width &lt;= 1.7 & Petal.Length &lt;= 4.8 |
+|     6| Petal.Length &gt; 1.9 & Petal.Width &lt;= 1.7 & Petal.Length &gt; 4.8  |
+|     7| Petal.Length &gt; 1.9 & Petal.Width &gt; 1.7                           |
 
 databases
 ---------
