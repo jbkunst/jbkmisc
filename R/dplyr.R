@@ -1,13 +1,21 @@
-#' sanitize data
-#' This is a wrapper of janitor package
+#' clean data
+#' This is a wrapper of some functions from janitor package
 #' @param data A data frame.
 #' @importFrom janitor clean_names remove_empty_cols
 #' @export
-sanitize_data <- function(data) {
-  data %>%
+clean <- function(data) {
+  stopifnot(is.data.frame(data))
+
+  # clean_names dont remove especial characters
+  names(data) <- stringi::stri_trans_general(names(data), "Latin-ASCII")
+
+  data <- data %>%
     clean_names() %>%
     tbl_df() %>%
     remove_empty_cols()
+
+  data
+
 }
 
 #' Count the counts

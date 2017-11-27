@@ -7,10 +7,7 @@
 list_rules_party(x)
 }
 \arguments{
-\item{x}{A party object.
-library(partykit)
-x <- ctree(Species ~ .,data = iris)
-list_rules_party(x)}
+\item{x}{A party object.}
 }
 \description{
 Get rules from partykit object

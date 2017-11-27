@@ -1,8 +1,9 @@
 #' My ggplot2 go-to theme inspired by \code{hrbrthemes}
 #' @param base_family base_family
 #' @param plot_title_face plot_title_face
+#' @param plot_title_size plot_title_size
 #' @param ... Parameters for \code{hrbrthemes::theme_ipsum}
-#' @importFrom ggplot2 theme_set theme element_line element_blank element_rect
+#' @importFrom ggplot2 theme_set theme element_line element_blank element_rect margin
 #'   element_text
 #' @importFrom hrbrthemes theme_ipsum
 #' @examples
@@ -25,10 +26,17 @@
 #' }
 #'
 #' @export
-theme_jbk <- function(base_family = "", plot_title_face = "plain", ...) {
+theme_jbk <- function(
+  base_family = "",
+  plot_title_face = "plain",
+  plot_title_size = 14,
+  ...) {
 
-  theme_ipsum(base_family = base_family, plot_title_face = plot_title_face,
-              plot_margin = margin(15, 15, 15, 15), ...) +
+  theme_ipsum(
+    base_family = base_family,
+    plot_title_face = plot_title_face,
+    plot_title_size = plot_title_size,
+    plot_margin = margin(15, 15, 15, 15), ...) +
     theme(
       title = element_text(colour = "#444444"),
       panel.grid.major = element_line(colour = "grey90"),
@@ -106,3 +114,42 @@ ggsav <- function(folder = "plots", pattern = "plot", ext = "jpg", npad = 2,
 }
 
 
+#' Update geoms colour
+#' @param figs_color figs_color
+#' @param text_color text_color
+#' @importFrom ggplot2 update_geom_defaults
+#' @examples
+#'
+#' update_some_geom_defaults_color()
+#'
+#' ggplot(mtcars) +
+#'   geom_point(aes(mpg, hp))
+#'
+#' @export
+update_some_geom_defaults <- function(
+  figs_color = "#008441",
+  text_color = "gray40"
+  ){
+
+  lapply(
+    c("line", "point"),
+    function(x){
+      update_geom_defaults(x, list(colour = figs_color))
+    })
+
+  lapply(
+    c("bar"),
+    function(x){
+      update_geom_defaults(x, list(fill = figs_color))
+    })
+
+
+  lapply(
+    c("text", "label"),
+    function(x){
+      update_geom_defaults(x, list(colour = text_color))
+    })
+
+  invisible(TRUE)
+
+}

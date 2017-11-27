@@ -4,12 +4,15 @@
 \alias{theme_jbk}
 \title{My ggplot2 go-to theme inspired by \code{hrbrthemes}}
 \usage{
-theme_jbk(base_family = "", plot_title_face = "plain", ...)
+theme_jbk(base_family = "", plot_title_face = "plain",
+  plot_title_size = 14, ...)
 }
 \arguments{
 \item{base_family}{base_family}
 
 \item{plot_title_face}{plot_title_face}
+
+\item{plot_title_size}{plot_title_size}
 
 \item{...}{Parameters for \code{hrbrthemes::theme_ipsum}}
 }
