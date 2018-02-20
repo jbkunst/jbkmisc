@@ -34,15 +34,22 @@ var_importance.RRF <- function(x) {
 
 #' Get rules from partykit object
 #' @param x A party object.
-# library(partykit)
-# x <- ctree(Species ~ .,data = iris)
-# list_rules_party(x)
+#' @examples
+#'
+#' library(partykit)
+#' tr <- ctree(Species ~ .,data = iris)
+#' ct_rules(tr)
+#'
+#' @importFrom utils getFromNamespace
 #' @export
-list_rules_party <- function(x) {
-  rules <- partykit:::.list.rules.party(x)
+ct_rules <- function(x) {
+
+  lrp <- getFromNamespace(".list.rules.party", "partykit")
+  rules <- lrp(x)
   out <- data.frame(
     node = as.numeric(names(rules)),
     rule = as.vector(rules)
-  )
+  ) %>%
+    mutate_if(is.factor, as.character)
   out
 }

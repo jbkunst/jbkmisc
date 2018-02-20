@@ -1,9 +1,13 @@
 #' clean data
 #' This is a wrapper of some functions from janitor package
 #' @param data A data frame.
+#' @param integer64_to_num Logical to transform integer64 to numeric
+#' @param factor_to_char Logical to transform factor to characters
 #' @importFrom janitor clean_names remove_empty_cols
+#' @importFrom dplyr mutate_if tbl_df
 #' @export
-clean <- function(data) {
+clean <- function(data, integer64_to_num = TRUE, factor_to_char = TRUE) {
+
   stopifnot(is.data.frame(data))
 
   # clean_names dont remove especial characters
@@ -13,6 +17,14 @@ clean <- function(data) {
     clean_names() %>%
     tbl_df() %>%
     remove_empty_cols()
+
+  if(integer64_to_num) {
+    data <- mutate_if(data, function(x){ "integer64" %in% class(x) }, as.numeric)
+  }
+
+  if(factor_to_char) {
+    data <- mutate_if(data, is.factor, as.character)
+  }
 
   data
 

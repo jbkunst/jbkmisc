@@ -7,7 +7,6 @@ Depends:
     R (>= 3.2.2)
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 6.0.1.9000
 Imports:
   ggplot2,
   showtext,
@@ -34,4 +33,4 @@ Imports:
   RRF,
   janitor,
   partykit
-  
+RoxygenNote: 6.0.1

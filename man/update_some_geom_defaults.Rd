@@ -15,8 +15,8 @@ update_some_geom_defaults(figs_color = "#008441", text_color = "gray40")
 Update geoms colour
 }
 \examples{
-
-update_some_geom_defaults_color()
+library(ggplot2)
+update_some_geom_defaults()
 
 ggplot(mtcars) +
   geom_point(aes(mpg, hp))

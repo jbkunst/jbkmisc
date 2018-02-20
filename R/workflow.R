@@ -1,11 +1,10 @@
 #' Generate structure
 #'
 #' @param dir Directory
+#' @param folders Folders to create in the dir directory
 #' @export
-wf_create_folders <- function(dir = ".") {
+wf_create_folders <- function(dir = ".", folders = c("R", "data", "outputs")) {
 
-  dir.create(file.path(dir, "code"))
-  dir.create(file.path(dir, "data"))
-  dir.create(file.path(dir, "output"))
+  lapply(folders, function(x) file.path(dir, x))
 
 }

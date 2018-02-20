@@ -5,10 +5,14 @@
 \title{clean data
 This is a wrapper of some functions from janitor package}
 \usage{
-clean(data)
+clean(data, integer64_to_num = TRUE, factor_to_char = TRUE)
 }
 \arguments{
 \item{data}{A data frame.}
+
+\item{integer64_to_num}{Logical to transform integer64 to numeric}
+
+\item{factor_to_char}{Logical to transform factor to characters}
 }
 \description{
 clean data

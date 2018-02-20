@@ -94,7 +94,6 @@ theme_set(theme_jbk())
 
 ggplot(d, aes(carat, price)) + 
   geom_point(aes(color = clarity), size = 0.1) + 
-  geom_smooth() + 
   scale_y_continuous(labels = scales::dollar) + 
   scale_color_viridis(discrete = TRUE) + 
   facet_grid(cut ~ color, scales = "free") + 
@@ -128,16 +127,13 @@ var_importance(rf)
 rrf <- RRF::RRF(Species ~ ., data = iris)
 var_importance(rrf)
 
-ct <- partykit::ctree(Species ~ ., data = iris)
-list_rules_party(ct)
+
+library(partykit)
+ct <- ctree(Species ~ ., data = iris)
+ct_rules(ct)
 ```
 
+## Databases
 
-## databases
-* `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
-* `sqlquery2`: Do a sqlQuery given a channel, a table name and fields. If 
-there are a sum, count etc, aumatically do the group by with the other 
-fields
-* `sqlFecth2`: Do the same as `sqlFecth` but fixes the `is.POSIXct ambiguous format`
 
 

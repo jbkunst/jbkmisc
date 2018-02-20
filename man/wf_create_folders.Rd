@@ -4,10 +4,12 @@
 \alias{wf_create_folders}
 \title{Generate structure}
 \usage{
-wf_create_folders(dir = ".")
+wf_create_folders(dir = ".", folders = c("R", "data", "outputs"))
 }
 \arguments{
 \item{dir}{Directory}
+
+\item{folders}{Folders to create in the dir directory}
 }
 \description{
 Generate structure

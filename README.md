@@ -10,7 +10,7 @@ jbkmisc
 -   [ggtheme](#ggtheme)
 -   [blog & presentations](#blog-presentations)
 -   [Model helpers](#model-helpers)
--   [databases](#databases)
+-   [Databases](#databases)
 
 [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
 
@@ -114,7 +114,7 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "192.168.43.116" "172.20.134.208"
+    ## [1] "192.168.8.87"
 
 Workflow
 --------
@@ -140,7 +140,6 @@ theme_set(theme_jbk())
 
 ggplot(d, aes(carat, price)) + 
   geom_point(aes(color = clarity), size = 0.1) + 
-  geom_smooth() + 
   scale_y_continuous(labels = scales::dollar) + 
   scale_color_viridis(discrete = TRUE) + 
   facet_grid(cut ~ color, scales = "free") + 
@@ -185,10 +184,10 @@ var_importance(rf)
 
 | variable     |  importance|
 |:-------------|-----------:|
-| Petal.Width  |   43.543430|
-| Petal.Length |   42.989321|
-| Sepal.Length |   10.092362|
-| Sepal.Width  |    2.637528|
+| Petal.Width  |   42.927586|
+| Petal.Length |   42.842354|
+| Sepal.Length |   11.207115|
+| Sepal.Width  |    2.283372|
 
 ``` r
 rrf <- RRF::RRF(Species ~ ., data = iris)
@@ -197,14 +196,15 @@ var_importance(rrf)
 
 | variable     |  importance|
 |:-------------|-----------:|
-| Petal.Width  |   49.940993|
-| Petal.Length |   46.830597|
-| Sepal.Width  |    1.291728|
-| Sepal.Length |    1.237187|
+| Petal.Width  |   49.775800|
+| Petal.Length |   46.972428|
+| Sepal.Width  |    1.264969|
+| Sepal.Length |    1.253229|
 
 ``` r
-ct <- partykit::ctree(Species ~ ., data = iris)
-list_rules_party(ct)
+library(partykit)
+ct <- ctree(Species ~ ., data = iris)
+ct_rules(ct)
 ```
 
 |  node| rule                                                                   |
@@ -214,9 +214,5 @@ list_rules_party(ct)
 |     6| Petal.Length &gt; 1.9 & Petal.Width &lt;= 1.7 & Petal.Length &gt; 4.8  |
 |     7| Petal.Length &gt; 1.9 & Petal.Width &gt; 1.7                           |
 
-databases
+Databases
 ---------
-
--   `sqlQuery2`: A wrapper for `RODBC::sqlQuery` but adding `tbl_df` class.
--   `sqlquery2`: Do a sqlQuery given a channel, a table name and fields. If there are a sum, count etc, aumatically do the group by with the other fields
--   `sqlFecth2`: Do the same as `sqlFecth` but fixes the `is.POSIXct ambiguous format`

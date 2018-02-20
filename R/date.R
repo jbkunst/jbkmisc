@@ -3,6 +3,12 @@
 #' @param day day
 #' @importFrom lubridate ymd
 #' @importFrom stringr str_pad
+#' @examples
+#'
+#' dts <- ym_to_date(c(200902, 201912))
+#' dts
+#' class(dts)
+#'
 #' @export
 ym_to_date <- function(ym = c(200902, 201912), day = 1){
   ymd(paste0(ym, str_pad(day, 2, pad = "0")))
@@ -13,6 +19,10 @@ ym_to_date <- function(ym = c(200902, 201912), day = 1){
 #' @param ym ym
 #' @param ym2 ym2
 #' @importFrom lubridate year month
+#' @examples
+#'
+#' ym_diff(c(200902, 201912), c(200901, 201712))
+#'
 #' @export
 ym_diff <- function(ym = c(200902, 201912), ym2 = c(200901, 201712)) {
 

@@ -21,21 +21,16 @@ My ggplot2 go-to theme inspired by \code{hrbrthemes}
 }
 \examples{
 
-
-\dontrun{
-require(ggplot2)
-require(hrbrthemes)
-require(extrafont)
-loadfonts()
+library(ggplot2)
+library(hrbrthemes)
 
 ggplot(mtcars) +
-  geom_point(aes(mpg, hp, color = factor(carb))) +
+  geom_point(aes(mpg, hp, color = factor(carb)), size = 2.5) +
   scale_color_ipsum() +
   labs(x="Fuel effiiency (mpg)", y="Weight (tons)",
        title="Seminal ggplot2 scatterplot example",
        subtitle="A plot that is only useful for demonstration purposes",
        caption="Brought to you by the letter 'g'") +
  theme_jbk()
-}
 
 }
