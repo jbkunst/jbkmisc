@@ -60,4 +60,16 @@ ym_div <- function(ym = format(ymd(20170101) + months(0:11), "%Y%m"), ng = 4) {
 
 }
 
-
+#' Format a year month into a specific date format
+#' A wrapper for ym_to_date and format:
+#' @param ym ym
+#' @param format format
+#' @param day day
+#' @examples
+#'
+#' ym_format(c(200902, 201912), "%B del %Y")
+#'
+#' @export
+ym_format <- function(ym = c(200902, 201912), format = "%Y%m%d", day = 1){
+  format(ymd(paste0(ym, str_pad(day, 2, pad = "0"))), format)
+}

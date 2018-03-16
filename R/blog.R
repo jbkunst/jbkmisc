@@ -133,11 +133,9 @@ spin_jekyll_post <- function(r_script){
 }
 
 #' Creating a md image and link source from a giphy url
-#'
 #' @param id id
 #' @param txt_ttl title
 #' @param addsource addsource
-#'
 #' @importFrom xml2 read_html
 #' @importFrom rvest html_node html_attr
 #' @importFrom magrittr %>%

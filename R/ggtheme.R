@@ -95,10 +95,17 @@ ggsav <- function(folder = "plots", pattern = "plot", ext = "jpg", npad = 2,
 #' Update geoms colour
 #' @param figs_color figs_color
 #' @param text_color text_color
+#' @param size size
+#' line_size
 #' @importFrom ggplot2 update_geom_defaults
 #' @examples
 #' library(ggplot2)
-#' update_some_geom_defaults()
+#' update_some_geom_defaults(figs_color = "#008441", text_color = "gray40", size = 2)
+#'
+#' ggplot(mtcars) +
+#'   geom_point(aes(mpg, hp))
+#'
+#' update_some_geom_defaults(figs_color = "red", text_color = "gray40", size = 4)
 #'
 #' ggplot(mtcars) +
 #'   geom_point(aes(mpg, hp))
@@ -106,27 +113,41 @@ ggsav <- function(folder = "plots", pattern = "plot", ext = "jpg", npad = 2,
 #' @export
 update_some_geom_defaults <- function(
   figs_color = "#008441",
-  text_color = "gray40"
+  text_color = "gray40",
+  size = 1
   ){
 
-  lapply(
-    c("line", "point"),
-    function(x){
-      update_geom_defaults(x, list(colour = figs_color))
-    })
+  if(!is.null(figs_color)) {
 
-  lapply(
-    c("bar"),
-    function(x){
-      update_geom_defaults(x, list(fill = figs_color))
-    })
+    lapply(
+      c("line", "point"),
+      function(x){
+        update_geom_defaults(x, list(colour = figs_color))
+      })
 
+    lapply(
+      c("bar"),
+      function(x){
+        update_geom_defaults(x, list(fill = figs_color))
+      })
 
-  lapply(
-    c("text", "label"),
-    function(x){
-      update_geom_defaults(x, list(colour = text_color))
-    })
+  }
+
+  if(!is.null(text_color)) {
+    lapply(
+      c("text", "label"),
+      function(x){
+        update_geom_defaults(x, list(colour = text_color))
+      })
+  }
+
+  if(!is.null(size)) {
+    lapply(
+      c("line", "point"),
+      function(x){
+        update_geom_defaults(x, list(size = size))
+      })
+  }
 
   invisible(TRUE)
 

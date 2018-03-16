@@ -1,6 +1,6 @@
 Package: jbkmisc
 Title: Own functions and nothing else
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person("Joshua", "Kunst", email = "jbkunst@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends:
@@ -9,28 +9,27 @@ License: MIT + file LICENSE
 LazyData: true
 Imports:
   ggplot2,
-  showtext,
-  sysfonts,
   knitr,
-  xml2,
   rvest,
+  xml2,
   magrittr,
   htmlwidgets,
   shiny,
-  RODBC,
   dplyr,
+  odbc,
+  DBI,
+  dbplyr,
   purrr,
   lubridate,
   stringr,
   stringi,
-  whisker,
   hrbrthemes,
-  extrafont,
-  R6,
   htmltools,
   tibble,
   randomForest,
   RRF,
   janitor,
-  partykit
+  partykit,
+  tictoc,
+  scales
 RoxygenNote: 6.0.1

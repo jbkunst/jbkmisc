@@ -14,11 +14,14 @@ library(printr)
 library(lubridate)
 ```
 
-[![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)
+<!-- [![Travis-CI Build Status](https://travis-ci.org/jbkunst/jbkmisc.svg?branch=master)](https://travis-ci.org/jbkunst/jbkmisc)-->
 
 ## Why? What?
 
-Idk. Just things I need sometimes, just helpers for my __laziness__.
+Idk:
+
+- Just things I need sometimes.
+- Just helpers and wrappers for my __laziness__.
 
 ## Installation
 
@@ -26,20 +29,26 @@ Idk. Just things I need sometimes, just helpers for my __laziness__.
 source("https://install-github.me/jbkunst/jbkmisc")
 ```
 
-## date
+## Date helpers
 
-* `ym_to_date`
+### `ym_to_date`
 ```{r}
 ym_to_date(ym = c(200902, 201912), day = 1)
 ```
 
-* `ym_diff`
+### `ym_diff`
 
 ```{r}
 ym_diff(ym = c(200902, 201912), ym2 = c(200901, 201712))
 ```
 
-* `ym_div`
+### `ym_format`
+
+```{r}
+ym_format(c(200902, 201912), "%B del %Y")
+```
+
+### `ym_div`
 
 ```{r}
 year <- format(ymd(20170101) + months(0:11), "%Y%m")
@@ -50,35 +59,54 @@ ym_div(year, ng = 3)
 ym_div(year, ng = 4)
 ```
 
-## dplyrs
+## dplyr
 
-* `countp`
+### `countp`
 
 ```{r}
 countp(mtcars, cyl)
+
 countp(mtcars, cyl, am)
+
+
+library(dplyr)
+
+mtcars %>%
+  group_by(cyl) %>% 
+  countp(am)
 ```
 
-
-* `ccount`
+### `ccount`
 ```{r}
 ccount(iris, Species)
 ```
 
-
-## shiny
-* `get_my_local_ip`
+### `clean`
 
 ```{r}
-get_my_local_ip()
+head(iris, 3)
+
+clean(head(iris, 3))
 ```
 
-## Workflow
-* `wf_create_folders`: crate `data`, `code` and `output` folder.
+## dbplyr
 
-## ggtheme
+### `dbRemoveTableIfExists`
+```
+dbRemoveTableIfExists(con, name)
+```
 
-* `theme_jbk`: Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more horizontal space.
+### `compute2`
+
+```
+compute2(con, name)
+```
+
+## ggplot2
+
+### `theme_jbk`
+
+Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more horizontal space.
 
 ```{r}
 library(ggplot2)
@@ -104,14 +132,25 @@ ggplot(d, aes(carat, price)) +
   )
 ```
 
-* `ggsav` and `filename_gen`: Automatic generation file names given a pattern
-to save without worry about names :D.
+### `ggsav` and `filename_gen`
+
+Automatic generation file names given a pattern to save without worry about names :D.
 
 ## blog & presentations
-* `spin_jekyll_post`: My custom spin r file to md and move the widgets, etc.
-* `blog_set_chunk`: Set opt chunk with my preferences
-* `giphy`: Put a giphy image given the id.
-* `ico`:
+
+### `spin_jekyll_post`
+
+My custom spin r file to md and move the widgets, etc.
+
+### `blog_set_chunk`
+
+Set opt chunk with my preferences
+
+### `giphy`
+
+Put a giphy image given the id.
+
+### `ico`
 
 ```{r}
 ico("tv", "red")
@@ -119,6 +158,8 @@ R()
 ```
 
 ## Model helpers
+
+### `var_importance`
 
 ```{r}
 rf <- randomForest::randomForest(Species ~ ., data = iris)
@@ -133,7 +174,55 @@ ct <- ctree(Species ~ ., data = iris)
 ct_rules(ct)
 ```
 
-## Databases
+## tictoc
 
+```{r}
+jbk_tictoc_clear()
+
+jbk_tic(msg = "Some sleep")
+
+Sys.sleep(2)
+
+jbk_toc()
+
+jbk_tic(msg = "Go to sleep again!")
+
+Sys.sleep(1)
+
+jbk_toc()
+
+jbk_tictoc_log()
+```
+
+## shiny
+
+### `get_my_local_ip`
+
+```{r}
+get_my_local_ip()
+```
+
+## Report Helpers
+
+### `format_tbl`
+
+```{r}
+data <- data.frame(
+  a_value_e = c(NA, runif(2)),
+  `another vAl` = c(runif(2), NA) * 10000
+  )
+
+data
+format_tbl(data)
+format_tbl(data, digits = 0, NA_symbol = "***", fun_title = toupper)
+```
+
+
+
+## Workflow
+
+### `wf_create_folders`
+
+create `data`, `code` and `output` folder.
 
 

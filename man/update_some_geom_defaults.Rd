@@ -4,19 +4,28 @@
 \alias{update_some_geom_defaults}
 \title{Update geoms colour}
 \usage{
-update_some_geom_defaults(figs_color = "#008441", text_color = "gray40")
+update_some_geom_defaults(figs_color = "#008441", text_color = "gray40",
+  size = 1)
 }
 \arguments{
 \item{figs_color}{figs_color}
 
 \item{text_color}{text_color}
+
+\item{size}{size
+line_size}
 }
 \description{
 Update geoms colour
 }
 \examples{
 library(ggplot2)
-update_some_geom_defaults()
+update_some_geom_defaults(figs_color = "#008441", text_color = "gray40", size = 2)
+
+ggplot(mtcars) +
+  geom_point(aes(mpg, hp))
+
+update_some_geom_defaults(figs_color = "red", text_color = "gray40", size = 4)
 
 ggplot(mtcars) +
   geom_point(aes(mpg, hp))
