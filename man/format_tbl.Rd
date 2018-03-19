@@ -4,7 +4,7 @@
 \alias{format_tbl}
 \title{Format table to report}
 \usage{
-format_tbl(data, digits = 2, NA_symbol = "-", fun_title = NULL)
+format_tbl(data, digits = 2, NA_symbol = "-", fun_title = str_clean)
 }
 \arguments{
 \item{data}{data frame}
@@ -21,9 +21,9 @@ Format table to report
 \examples{
 
 data <- data.frame(
-  a_value_e = c(NA, runif(3)),
-  `another vAl` = c(NA, runif(3)) * 10000
-  )
+  a_value.e = c(NA, runif(3)),
+  `another.vAlue__here` = c(NA, runif(3)) * 10000
+)
 
 data
 format_tbl(data)

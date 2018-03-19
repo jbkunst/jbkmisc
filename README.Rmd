@@ -208,16 +208,28 @@ get_my_local_ip()
 
 ```{r}
 data <- data.frame(
-  a_value_e = c(NA, runif(2)),
-  `another vAl` = c(runif(2), NA) * 10000
+  a_value.e = c(NA, runif(3)),
+  `another.vAlue__here` = c(NA, runif(3)) * 10000
   )
 
 data
+
 format_tbl(data)
+
 format_tbl(data, digits = 0, NA_symbol = "***", fun_title = toupper)
 ```
 
+## Stringr
 
+### `str_clean`
+
+```{r}
+string <- c("name.with...points", "or_Under___scores")
+string
+
+str_clean(string)
+str_clean(string, fun = toupper)
+```
 
 ## Workflow
 

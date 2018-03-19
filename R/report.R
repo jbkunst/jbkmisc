@@ -6,9 +6,9 @@
 #' @examples
 #'
 #' data <- data.frame(
-#'   a_value_e = c(NA, runif(3)),
-#'   `another vAl` = c(NA, runif(3)) * 10000
-#'   )
+#'   a_value.e = c(NA, runif(3)),
+#'   `another.vAlue__here` = c(NA, runif(3)) * 10000
+#' )
 #'
 #' data
 #' format_tbl(data)
@@ -18,13 +18,15 @@
 #' @importFrom stringr str_detect
 #' @importFrom purrr set_names
 #' @export
-format_tbl <- function(data, digits = 2, NA_symbol = "-", fun_title = NULL) {
+format_tbl <- function(data, digits = 2, NA_symbol = "-", fun_title = str_clean) {
 
   stopifnot(is.data.frame(data))
   stopifnot(is.numeric(digits))
   stopifnot(is.character(NA_symbol) & is.atomic(NA_symbol))
 
   is_0_1 <- function(x) {
+
+    if(!is.numeric(x)) return(FALSE)
 
     min(x, na.rm = TRUE) >= 0 & max(x, na.rm = TRUE) <= 1
 

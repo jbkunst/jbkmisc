@@ -30,6 +30,8 @@ jbkmisc
     -   [`get_my_local_ip`](#get_my_local_ip)
 -   [Report Helpers](#report-helpers)
     -   [`format_tbl`](#format_tbl)
+-   [Stringr](#stringr)
+    -   [`str_clean`](#str_clean)
 -   [Workflow](#workflow)
     -   [`wf_create_folders`](#wf_create_folders)
 
@@ -266,10 +268,10 @@ var_importance(rf)
 
 | variable     |  importance|
 |:-------------|-----------:|
-| Petal.Length |   44.657509|
-| Petal.Width  |   44.330833|
-| Sepal.Length |    7.988387|
-| Sepal.Width  |    2.319245|
+| Petal.Width  |   45.920544|
+| Petal.Length |   41.190796|
+| Sepal.Length |    9.839711|
+| Sepal.Width  |    2.289910|
 
 ``` r
 rrf <- RRF::RRF(Species ~ ., data = iris)
@@ -278,10 +280,10 @@ var_importance(rrf)
 
 | variable     |  importance|
 |:-------------|-----------:|
-| Petal.Width  |   49.115049|
-| Petal.Length |   47.546045|
-| Sepal.Width  |    1.337230|
-| Sepal.Length |    1.308688|
+| Petal.Width  |   51.256757|
+| Petal.Length |   45.366091|
+| Sepal.Width  |    1.362231|
+| Sepal.Length |    1.250244|
 
 ``` r
 library(partykit)
@@ -306,7 +308,7 @@ jbk_tic(msg = "Some sleep")
 ```
 
     ## 
-    ## Some sleep - starting at: 13:02:29
+    ## Some sleep - starting at: 18:27:09
 
 ``` r
 Sys.sleep(2)
@@ -314,14 +316,14 @@ Sys.sleep(2)
 jbk_toc()
 ```
 
-    ## Some sleep - finished in: 2.01 seconds
+    ## Some sleep - finished in: 2 seconds
 
 ``` r
 jbk_tic(msg = "Go to sleep again!")
 ```
 
     ## 
-    ## Go to sleep again! - starting at: 13:02:31
+    ## Go to sleep again! - starting at: 18:27:11
 
 ``` r
 Sys.sleep(1)
@@ -329,7 +331,7 @@ Sys.sleep(1)
 jbk_toc()
 ```
 
-    ## Go to sleep again! - finished in: 1.02 seconds
+    ## Go to sleep again! - finished in: 1.01 seconds
 
 ``` r
 jbk_tictoc_log()
@@ -337,8 +339,8 @@ jbk_tictoc_log()
 
 |    tic|    toc| msg                |  time\_minutes|
 |------:|------:|:-------------------|--------------:|
-|  12.18|  14.19| Some sleep         |         0.0335|
-|  14.19|  15.21| Go to sleep again! |         0.0170|
+|  13.58|  15.58| Some sleep         |      0.0333333|
+|  15.58|  16.59| Go to sleep again! |      0.0168333|
 
 shiny
 -----
@@ -349,7 +351,7 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "172.20.218.227" "172.20.134.208"
+    ## [1] "172.20.218.227"
 
 Report Helpers
 --------------
@@ -358,34 +360,63 @@ Report Helpers
 
 ``` r
 data <- data.frame(
-  p = c(NA, runif(5)),
-  n = c(NA, runif(5)) * 10000
+  a_value_e = c(NA, runif(3)),
+  `another vAl` = c(NA, runif(3)) * 10000
   )
 
 data
 ```
 
-|          p|         n|
-|----------:|---------:|
-|         NA|        NA|
-|  0.7809716|  6062.246|
-|  0.0036084|  7867.104|
-|  0.8480068|  4680.896|
-|  0.3944284|  3170.301|
-|  0.9942148|  4571.795|
+|  a\_value\_e|  another.vAl|
+|------------:|------------:|
+|           NA|           NA|
+|    0.2253251|     5502.067|
+|    0.1956287|     9116.930|
+|    0.6070768|     3691.505|
 
 ``` r
-format_tbl(data, digits = 2)
+format_tbl(data)
 ```
 
-| p     | n        |
-|:------|:---------|
-| -     | NA       |
-| 78.1% | 6,062.25 |
-| 0.4%  | 7,867.10 |
-| 84.8% | 4,680.90 |
-| 39.4% | 3,170.30 |
-| 99.4% | 4,571.80 |
+a\_value\_e another.vAl ---------- ------------ - -
+22.5% 5,502.07
+19.6% 9,116.93
+60.7% 3,691.51
+
+``` r
+format_tbl(data, digits = 0, NA_symbol = "***", fun_title = toupper)
+```
+
+| A\_VALUE\_E | ANOTHER.VAL |
+|:------------|:------------|
+| \*\*\*      | \*\*\*      |
+| 22.5%       | 5,502       |
+| 19.6%       | 9,117       |
+| 60.7%       | 3,692       |
+
+Stringr
+-------
+
+### `str_clean`
+
+``` r
+string <- c("name.with...points", "or_Under___scores")
+string
+```
+
+    ## [1] "name.with...points" "or_Under___scores"
+
+``` r
+str_clean(string)
+```
+
+    ## [1] "Name With Points" "Or Under Scores"
+
+``` r
+str_clean(string, fun = toupper)
+```
+
+    ## [1] "NAME WITH POINTS" "OR UNDER SCORES"
 
 Workflow
 --------
