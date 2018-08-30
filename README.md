@@ -6,6 +6,7 @@ jbkmisc
 -   [Date helpers](#date-helpers)
     -   [`ym_to_date`](#ym_to_date)
     -   [`ym_diff`](#ym_diff)
+    -   [`ym_add_months`](#ym_add_months)
     -   [`ym_format`](#ym_format)
     -   [`ym_div`](#ym_div)
 -   [dplyr](#dplyr)
@@ -23,8 +24,6 @@ jbkmisc
     -   [`blog_set_chunk`](#blog_set_chunk)
     -   [`giphy`](#giphy)
     -   [`ico`](#ico)
--   [Model helpers](#model-helpers)
-    -   [`var_importance`](#var_importance)
 -   [tictoc](#tictoc)
 -   [shiny](#shiny)
     -   [`get_my_local_ip`](#get_my_local_ip)
@@ -67,6 +66,14 @@ ym_diff(ym = c(200902, 201912), ym2 = c(200901, 201712))
 ```
 
     ## [1]  1 24
+
+### `ym_add_months`
+
+``` r
+ym_add_months(c(200902, 201912), months = c(1, -12))
+```
+
+    ## [1] "200903" "201812"
 
 ### `ym_format`
 
@@ -140,12 +147,12 @@ mtcars %>%
     ## # Groups:   cyl [3]
     ##     cyl    am     n     p  pcum
     ##   <dbl> <dbl> <int> <dbl> <dbl>
-    ## 1    4.    0.     3 0.273 0.273
-    ## 2    4.    1.     8 0.727 1.00 
-    ## 3    6.    0.     4 0.571 0.571
-    ## 4    6.    1.     3 0.429 1.00 
-    ## 5    8.    0.    12 0.857 0.857
-    ## 6    8.    1.     2 0.143 1.00
+    ## 1     4     0     3 0.273 0.273
+    ## 2     4     1     8 0.727 1    
+    ## 3     6     0     4 0.571 0.571
+    ## 4     6     1     3 0.429 1    
+    ## 5     8     0    12 0.857 0.857
+    ## 6     8     1     2 0.143 1
 
 ### `ccount`
 
@@ -200,7 +207,6 @@ Based on `hrbrthemes::theme_ipsum`, soft gridline color, legend at top for more 
 ``` r
 library(ggplot2)
 library(dplyr)
-library(viridis)
 
 data("diamonds")
 d <- diamonds %>% 
@@ -212,7 +218,7 @@ theme_set(theme_jbk())
 ggplot(d, aes(carat, price)) + 
   geom_point(aes(color = clarity), size = 0.1) + 
   scale_y_continuous(labels = scales::dollar) + 
-  scale_color_viridis(discrete = TRUE) + 
+  scale_color_viridis_d() + 
   facet_grid(cut ~ color, scales = "free") + 
   labs(
     title = "This is a Title",
@@ -221,7 +227,7 @@ ggplot(d, aes(carat, price)) +
   )
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-8-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 ### `ggsav` and `filename_gen`
 
@@ -256,48 +262,6 @@ R()
 
     ## [1] "<span style=\"color:#2066B9;font-weight:500\">R</span>"
 
-Model helpers
--------------
-
-### `var_importance`
-
-``` r
-rf <- randomForest::randomForest(Species ~ ., data = iris)
-var_importance(rf)
-```
-
-| variable     |  importance|
-|:-------------|-----------:|
-| Petal.Width  |   45.920544|
-| Petal.Length |   41.190796|
-| Sepal.Length |    9.839711|
-| Sepal.Width  |    2.289910|
-
-``` r
-rrf <- RRF::RRF(Species ~ ., data = iris)
-var_importance(rrf)
-```
-
-| variable     |  importance|
-|:-------------|-----------:|
-| Petal.Width  |   51.256757|
-| Petal.Length |   45.366091|
-| Sepal.Width  |    1.362231|
-| Sepal.Length |    1.250244|
-
-``` r
-library(partykit)
-ct <- ctree(Species ~ ., data = iris)
-ct_rules(ct)
-```
-
-|  node| rule                                                                   |
-|-----:|:-----------------------------------------------------------------------|
-|     2| Petal.Length &lt;= 1.9                                                 |
-|     5| Petal.Length &gt; 1.9 & Petal.Width &lt;= 1.7 & Petal.Length &lt;= 4.8 |
-|     6| Petal.Length &gt; 1.9 & Petal.Width &lt;= 1.7 & Petal.Length &gt; 4.8  |
-|     7| Petal.Length &gt; 1.9 & Petal.Width &gt; 1.7                           |
-
 tictoc
 ------
 
@@ -308,7 +272,7 @@ jbk_tic(msg = "Some sleep")
 ```
 
     ## 
-    ## Some sleep - starting at: 18:27:09
+    ## Some sleep - starting at: 15:42:22
 
 ``` r
 Sys.sleep(2)
@@ -316,14 +280,14 @@ Sys.sleep(2)
 jbk_toc()
 ```
 
-    ## Some sleep - finished in: 2 seconds
+    ## Some sleep - finished in: 2.03 seconds
 
 ``` r
 jbk_tic(msg = "Go to sleep again!")
 ```
 
     ## 
-    ## Go to sleep again! - starting at: 18:27:11
+    ## Go to sleep again! - starting at: 15:42:24
 
 ``` r
 Sys.sleep(1)
@@ -331,16 +295,16 @@ Sys.sleep(1)
 jbk_toc()
 ```
 
-    ## Go to sleep again! - finished in: 1.01 seconds
+    ## Go to sleep again! - finished in: 1.03 seconds
 
 ``` r
 jbk_tictoc_log()
 ```
 
-|    tic|    toc| msg                |  time\_minutes|
-|------:|------:|:-------------------|--------------:|
-|  13.58|  15.58| Some sleep         |      0.0333333|
-|  15.58|  16.59| Go to sleep again! |      0.0168333|
+|   tic|   toc| msg                |  time\_minutes|
+|-----:|-----:|:-------------------|--------------:|
+|  6.84|  8.87| Some sleep         |      0.0338333|
+|  8.87|  9.90| Go to sleep again! |      0.0171667|
 
 shiny
 -----
@@ -351,7 +315,7 @@ shiny
 get_my_local_ip()
 ```
 
-    ## [1] "172.20.218.227"
+    ## [1] "172.20.134.208"
 
 Report Helpers
 --------------
@@ -360,39 +324,39 @@ Report Helpers
 
 ``` r
 data <- data.frame(
-  a_value_e = c(NA, runif(3)),
-  `another vAl` = c(NA, runif(3)) * 10000
+  a_value.e = c(NA, runif(3)),
+  `another.vAlue__here` = c(NA, runif(3)) * 10000
   )
 
 data
 ```
 
-|  a\_value\_e|  another.vAl|
-|------------:|------------:|
-|           NA|           NA|
-|    0.2253251|     5502.067|
-|    0.1956287|     9116.930|
-|    0.6070768|     3691.505|
+|  a\_value.e|  another.vAlue\_\_here|
+|-----------:|----------------------:|
+|          NA|                     NA|
+|   0.3232697|               3542.885|
+|   0.4877582|               6136.252|
+|   0.7214735|               9922.514|
 
 ``` r
 format_tbl(data)
 ```
 
-a\_value\_e another.vAl ---------- ------------ - -
-22.5% 5,502.07
-19.6% 9,116.93
-60.7% 3,691.51
+A Value E Another Value Here ---------- ------------------- - -
+32.3% 3,542.89
+48.8% 6,136.25
+72.1% 9,922.51
 
 ``` r
 format_tbl(data, digits = 0, NA_symbol = "***", fun_title = toupper)
 ```
 
-| A\_VALUE\_E | ANOTHER.VAL |
-|:------------|:------------|
-| \*\*\*      | \*\*\*      |
-| 22.5%       | 5,502       |
-| 19.6%       | 9,117       |
-| 60.7%       | 3,692       |
+| A\_VALUE.E | ANOTHER.VALUE\_\_HERE |
+|:-----------|:----------------------|
+| \*\*\*     | \*\*\*                |
+| 32.3%      | 3,543                 |
+| 48.8%      | 6,136                 |
+| 72.1%      | 9,923                 |
 
 Stringr
 -------

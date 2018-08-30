@@ -73,3 +73,21 @@ ym_div <- function(ym = format(ymd(20170101) + months(0:11), "%Y%m"), ng = 4) {
 ym_format <- function(ym = c(200902, 201912), format = "%Y%m%d", day = 1){
   format(ymd(paste0(ym, str_pad(day, 2, pad = "0"))), format)
 }
+
+
+#' Add mothns to a year month
+#'
+#' @param ym ym
+#' @param months months
+#' @examples
+#'
+#' ym_add_months(c(200902, 201912), months = c(1, -12))
+#'
+#' @export
+ym_add_months <- function(ym = c(201201, 201303), months = c(1, -12)) {
+
+  ym %>%
+    jbkmisc::ym_to_date() %>%
+    { . + months(months) } %>%
+    format("%Y%m")
+}

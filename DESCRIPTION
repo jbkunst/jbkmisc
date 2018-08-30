@@ -1,6 +1,6 @@
 Package: jbkmisc
 Title: Own functions and nothing else
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: person("Joshua", "Kunst", email = "jbkunst@gmail.com", role = c("aut", "cre"))
 Description: What the package does (one paragraph).
 Depends:
@@ -26,8 +26,6 @@ Imports:
   hrbrthemes,
   htmltools,
   tibble,
-  randomForest,
-  RRF,
   janitor,
   partykit,
   tictoc,
