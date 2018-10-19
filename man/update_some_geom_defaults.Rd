@@ -4,8 +4,8 @@
 \alias{update_some_geom_defaults}
 \title{Update geoms colour}
 \usage{
-update_some_geom_defaults(figs_color = "#008441", text_color = "gray40",
-  size = 1)
+update_some_geom_defaults(figs_color = "#008441",
+  text_color = "gray40", size = 1)
 }
 \arguments{
 \item{figs_color}{figs_color}

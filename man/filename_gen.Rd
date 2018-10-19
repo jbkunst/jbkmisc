@@ -4,7 +4,8 @@
 \alias{filename_gen}
 \title{Auxiliar function to generate a filename following a pattern}
 \usage{
-filename_gen(folder = "plots", pattern = "plot", ext = "jpg", npad = 2)
+filename_gen(folder = "plots", pattern = "plot", ext = "jpg",
+  npad = 2)
 }
 \arguments{
 \item{folder}{.}
