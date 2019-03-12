@@ -17,5 +17,5 @@ StripTrailingWhitespace: Yes
 
 BuildType: Package
 PackageUseDevtools: Yes
-PackageInstallArgs: --no-multiarch --with-keep.source --library=C:\Users\jkunstf\Documents\R\win-library\3.5
+PackageInstallArgs: --no-multiarch --with-keep.source --library=C:/Users/jkunstf/Documents/R/win-library/3.5
 PackageRoxygenize: rd,collate,namespace,vignette
